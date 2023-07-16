@@ -152,8 +152,59 @@ Input: head = [3,2,0,-4], pos = 1
 Output: the node with value 2
 Explanation: There is a cycle in the linked list, where the tail connects to the second node.
 
-(Note: For the remaining questions, I will provide the problem statement and sample input/output as a single block for readability purposes.)
+To solve the Linked List Cycle II problem (Question #142), you can use the Floyd's Tortoise and Hare algorithm, also known as the "fast and slow pointers" technique. Here's how you can approach it:
 
+1. Initialize two pointers, `slow` and `fast`, both initially set to the head of the linked list.
+2. Move `slow` one step at a time and `fast` two steps at a time through the linked list.
+3. Continue moving the pointers until they meet or `fast` reaches the end of the linked list (i.e., it becomes `null`).
+   - If `fast` becomes `null`, it means there is no cycle in the linked list. Return `null`.
+   - If `slow` and `fast` meet, it indicates the presence of a cycle in the linked list.
+4. Reset the `slow` pointer to the head of the linked list and keep `fast` at the meeting point.
+5. Move both pointers one step at a time until they meet again. The meeting point will be the start of the cycle.
+6. Return the node at which the cycle starts.
+
+
+Proof : 
+
+1. Once the `fast` and `slow` pointers meet inside the cycle, let's say the distance from the head of the linked list to the start of the cycle is `D`, and the distance from the start of the cycle to the meeting point of the two pointers is `K`.
+
+2. When the `fast` pointer catches up to the `slow` pointer, it has traveled twice the distance as the `slow` pointer. Therefore, the `fast` pointer has traveled a total distance of `D + K + C` (where `C` represents the number of complete cycles the `fast` pointer made within the cycle), while the `slow` pointer has traveled a distance of `D + K`.
+
+3. Since the `fast` pointer moves twice as fast as the `slow` pointer, we can express their respective distances as follows: `2(D + K) = D + K + C`, which simplifies to `D + K = C`. This equation tells us that the distance from the head of the linked list to the start of the cycle is equal to the number of complete cycles within the cycle.
+
+4. By resetting the `slow` pointer to the head of the linked list and keeping the `fast` pointer at the meeting point, and then moving both pointers one step at a time, the `slow` pointer will travel a distance of `D` to reach the start of the cycle, while the `fast` pointer will travel a distance of `C` within the cycle.
+
+5. As the `slow` and `fast` pointers continue moving, they will eventually meet again at the start of the cycle. This is because the `slow` pointer has traveled a distance of `D`, while the `fast` pointer has traveled a distance of `C`, and we know from step 3 that `D` is equal to `C`.
+
+In this solution, we use two pointers to detect the cycle and find the node where the cycle starts. The time complexity of this algorithm is O(n), where n is the number of nodes in the linked list. The space complexity is O(1) as we only use a constant amount of extra space.
+
+Code : 
+public ListNode detectCycle(ListNode head) {
+    ListNode slow = head;
+    ListNode fast = head;
+
+    while(fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+        if (fast == slow){
+            break;
+        }
+    }
+
+    if (fast == null || fast.next == null){
+        return null;
+    }
+
+    slow = head;
+
+    while (slow != fast) {
+        slow = slow.next;
+        fast = fast.next;
+    }
+
+    return slow;
+}
+-------------------------------------------------------------
 5. Reverse Linked List II (Question #92):
 Reverse a linked list from position `m` to `n`. Do it in one-pass and without using extra memory.
 
