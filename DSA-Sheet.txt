@@ -1,32 +1,151 @@
-Algorithm - Two Pointers
-
-1. Two Sum (Question #1):
-Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.
-Example:
-Input: nums = [2,7,11,15], target = 9
-Output: [0,1]
-Explanation: The sum of 2 and 7 equals 9, so the output is [0,1].
-
-2. Container With Most Water (Question #11):
+##Algorithm - Two Pointers
+----------------------------------------------------------
+1. Container With Most Water (Question #11):
 Given `n` non-negative integers `height`, where each represents a point at coordinate `(i, height[i])`, n vertical lines are drawn such that the two endpoints of the line `i` are at `(i, height[i])` and `(i, 0)`. Find two lines, which, together with the x-axis, forms a container, such that the container contains the most water.
 Example:
 Input: height = [1,8,6,2,5,4,8,3,7]
 Output: 49
 Explanation: The maximum area is obtained by choosing the second and sixth vertical lines.
 
-3. Three Sum (Question #15):
+Approach :
+Initialize two pointers, start and end, pointing to the first and last indices of the array.
+Initialize a variable maxArea to keep track of the maximum water area encountered so far.
+While the start pointer is less than the end pointer:
+Calculate the current water area using the formula: area = (end - start) * min(height[start], height[end]).
+Update maxArea if the current area is greater than the previous maximum.
+Move the pointer that points to the smaller height inward, as moving the pointer with the larger height won't increase the area.
+Repeat step 3 until the pointers meet, indicating that all possible areas have been considered.
+Return the maxArea as the result.
+
+In this solution, we iterate through the array once using the two-pointer technique, resulting in a time complexity of O(n), where n is the number of elements in the array. The space complexity is O(1) as we only use a constant amount of extra space.
+
+Java code :
+
+public int maxArea(int[] height) {
+    int n = height.length;
+    int start = 0;
+    int end = n - 1;
+    int maxWaterArea = Integer.MIN_VALUE;
+
+    while (start < end) {
+        int minHeight = Math.min(height[start], height[end]);
+        int currWaterArea = (end - start) * minHeight;
+        maxWaterArea = Math.max(maxWaterArea, currWaterArea);
+
+        if (height[start] < height[end])
+            start++;
+        else 
+            end--;
+    }
+
+    return maxWaterArea;
+}
+----------------------------------------------------------------
+2. Three Sum (Question #15):
 Given an array `nums` of `n` integers, find all unique triplets in the array which gives the sum of `0`.
 Example:
 Input: nums = [-1,0,1,2,-1,-4]
 Output: [[-1,-1,2],[-1,0,1]]
 
-4. Remove Duplicates from Sorted Array (Question #26):
+Approach:
+To solve the Three Sum problem (Question #15), you can use the two-pointer technique combined with sorting the array. Here's how you can approach it:
+
+1. Sort the given array in non-decreasing order. This step allows us to use the two-pointer technique effectively.
+2. Iterate through the array from left to right, considering each element as a potential first element of the triplet.
+   - Skip duplicate elements to avoid duplicate triplets.
+   - For each element, set two pointers, `left` and `right`, initially pointing to the next element and the last element, respectively.
+   - While `left` is less than `right`, calculate the sum of the three elements (current element + `nums[left]` + `nums[right]`).
+     - If the sum is equal to zero, add the triplet `[nums[i], nums[left], nums[right]]` to the result set.
+     - If the sum is less than zero, increment `left` to increase the sum.
+     - If the sum is greater than zero, decrement `right` to decrease the sum.
+     - Skip duplicate elements for `left` and `right` to avoid duplicate triplets.
+3. Repeat step 2 until all elements have been considered as potential first elements.
+4. Return the list of unique triplets that sum to zero.
+
+In this solution, we sort the array first, which takes O(nlogn) time. Then, we iterate through the array using the two-pointer technique, resulting in a time complexity of O(n^2). The space complexity is O(1) as we only use a constant amount of extra space.
+
+public List<List<Integer>> threeSum(int[] nums) {
+    List<List<Integer>> result = new ArrayList<>();
+    if (nums.length < 3) {
+        return result;
+    }
+    Arrays.sort(nums);
+    int n = nums.length;
+
+    for (int i = 0; i < n-2; i++){
+        //Check if i is not 0 and i-1 element should not be same to i'th
+        //element else skip that triplet
+        if (i > 0 && nums[i] == nums[i-1]) {
+            continue;
+        }
+        int left = i+1;
+        int right = n-1;
+
+        while (left < right) {
+            int target = nums[i] + nums[left] + nums[right];
+            if (target == 0) {
+                result.add(Arrays.asList(nums[i], nums[left], nums[right]));
+
+                //avoid duplicates on left ptr
+                while(left < right && nums[left] == nums[left+1]) {
+                    left++;
+                }
+
+                //avoid duplicates on right ptr
+                while(left < right && nums[right] == nums[right-1]) {
+                    right--;
+                }
+                left++;
+                right--;
+            } else if (target < 0){
+                left++;
+            } else {
+                right--;
+            }
+        }
+    }
+    return result;
+}
+----------------------------------------------------------------
+
+3. Remove Duplicates from Sorted Array (Question #26):
 Given a sorted array `nums`, remove the duplicates in-place such that each element appears only once and returns the new length.
 Example:
 Input: nums = [1,1,2]
 Output: 2
 
-5. Linked List Cycle II (Question #142):
+Approach
+1. Initialize two pointers, `ptr1` and `ptr2`, both initially set to 0 and 1 respectively. 
+2. Iterate till ptr2 < array length
+3. if nums[ptr1] == nums[ptr2] that means duplicates increment ptr2
+4. if nums[ptr1] != nums[ptr2] that means distinct elements increment ptr1 and swap elements on both pointers increment both pointers
+5. finally return ptr1+1 value that will be your total distinct elements
+
+TC : O(N) - SC : O(1)
+
+public int removeDuplicates(int[] nums) {
+    if (nums.length < 2){
+        return nums.length;
+    }
+    int n = nums.length;
+    int ptr1 = 0;
+    int ptr2 = 1;
+    while (ptr2 < n) {
+        if (nums[ptr1] == nums[ptr2]) {
+            ptr2++;
+        } else {
+            ptr1++;
+            int temp = nums[ptr2];
+            nums[ptr2] = nums[ptr1];
+            nums[ptr1] = temp;
+            ptr2++;
+        }
+    }
+    return ++ptr1;
+}
+----------------------------------------------------
+
+4. Linked List Cycle II (Question #142):
 Given a linked list, return the node where the cycle begins. If there is no cycle, return `null`.
 Example:
 Input: head = [3,2,0,-4], pos = 1
@@ -35,34 +154,55 @@ Explanation: There is a cycle in the linked list, where the tail connects to the
 
 (Note: For the remaining questions, I will provide the problem statement and sample input/output as a single block for readability purposes.)
 
-6. Reverse Linked List II (Question #92):
+5. Reverse Linked List II (Question #92):
 Reverse a linked list from position `m` to `n`. Do it in one-pass and without using extra memory.
 
-7. Longest Palindromic Substring (Question #5):
+6. Longest Palindromic Substring (Question #5):
 Given a string `s`, return the longest palindromic substring in `s`.
 
-8. Merge Intervals (Question #56):
+7. Merge Intervals (Question #56):
 Given an array of intervals `intervals` where `intervals[i] = [start_i, end_i]`, merge all overlapping intervals.
 
-9. Valid Parentheses (Question #20):
+8. Valid Parentheses (Question #20):
 Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['`, `']'`, determine if the input string is valid.
 
-10. Minimum Window Substring (Question #76):
+9. Minimum Window Substring (Question #76):
 Given two strings `s` and `t`, return the minimum window in `s` which will contain all the characters in `t` in complexity `O(n)`.
 
-11. Remove Element (Question #27):
+10. Remove Element (Question #27):
 Given an array `nums` and a value `val`, remove all instances of that value in-place and return the new length.
 
-12. Find the Index of the First Occurrence in a String (Question #28):
+11. Find the Index of the First Occurrence in a String (Question #28):
 Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
 
-13. Next Permutation (Question #31):
+12. Next Permutation (Question #31):
 Implement `next permutation`, which rearranges numbers into the lexicographically next greater permutation of numbers.
 
-14. Remove Nth Node From End of List (Question #19):
+13. Remove Nth Node From End of List (Question #19):
 Given the `head` of a linked list, remove the `nth` node from the end of the list and return its head.
 
-15. Rotate Array (Question #189):
+14. Rotate Array (Question #189):
 Given an array, rotate the array to the right by `k` steps, where `k` is non-negative.
 
-Please note that the sample inputs and outputs provided here are just for illustrative purposes. You can find more detailed information, additional test cases, and submit your solutions on the LeetCode platform for each specific problem.
+
+##HashMap
+
+1. Two Sum (Question #1):
+Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.
+Example:
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: The sum of 2 and 7 equals 9, so the output is [0,1].
+
+public int[] twoSum(int[] nums, int target) {
+    HashMap<Integer, Integer> map = new HashMap<>();
+
+    for (int i = 0; i < nums.length; i++){
+        int complement = target - nums[i];
+        if (map.containsKey(complement)){
+            return new int[] {map.get(complement), i};
+        }
+        map.put(nums[i], i);
+    }
+    return new int[]{};
+}
