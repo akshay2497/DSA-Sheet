@@ -207,33 +207,167 @@ public ListNode detectCycle(ListNode head) {
 -------------------------------------------------------------
 5. Reverse Linked List II (Question #92):
 Reverse a linked list from position `m` to `n`. Do it in one-pass and without using extra memory.
+Example:
+Input: 1 -> 2 -> 3 -> 4 -> 5, m = 2, n = 4
+Output: 1 -> 4 -> 3 -> 2 -> 5
+
+--------------------------------------------------------------
 
 6. Longest Palindromic Substring (Question #5):
 Given a string `s`, return the longest palindromic substring in `s`.
+Example:
+Input: "babad"
+Output: "bab" or "aba"
+
+class Solution {
+    int totalSubStringLength = 0;
+    int startPoint = 0;
+
+    public String longestPalindrome(String s) {
+        int n = s.length();
+
+        // Iterate through each character of the input string
+        for (int i = 0; i < n; i++) {
+            findPalindrome(s, i, i);      // Consider current character as the center of a palindrome with an odd length
+            findPalindrome(s, i, i+1);    // Consider current character and the next character as the center of a palindrome with an even length
+        }
+
+        // Return the longest palindromic substring using the startPoint and totalSubStringLength variables
+        return s.substring(startPoint, startPoint + totalSubStringLength);
+    }
+
+    public void findPalindrome(String s, int start, int end) {
+        // Expand around the center indices until the characters are equal or the boundary is reached
+        while (start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
+            start--;
+            end++;
+        }
+
+        // Check if the length of the current palindrome is greater than the stored length
+        if (totalSubStringLength < end - start - 1) {
+            startPoint = start + 1;                          // Update the starting index of the longest palindrome
+            totalSubStringLength = end - start - 1;          // Update the length of the longest palindrome
+        }
+    }
+}
+
+1. The class defines two member variables: `totalSubStringLength` and `startPoint`.
+   - `totalSubStringLength` stores the length of the longest palindromic substring found so far.
+   - `startPoint` stores the starting index of the longest palindromic substring found so far.
+
+2. The `longestPalindrome` method takes the input string `s` and returns the longest palindromic substring in `s`.
+
+3. The method initializes `totalSubStringLength` and `startPoint` to 0.
+
+4. The method iterates through each character of the input string `s` using a `for` loop.
+
+5. For each character at index `i`, the method calls the `findPalindrome` method twice:
+   - The first call considers the current character as the center of a palindrome with an odd length.
+   - The second call considers the current character and the next character as the center of a palindrome with an even length.
+
+6. The `findPalindrome` method is responsible for expanding around the center indices to find the length of the palindrome.
+
+7. The `findPalindrome` method uses a `while` loop to expand the palindrome by checking if the characters at indices `start` and `end` are equal. It continues expanding as long as the characters are equal and there are characters available on both sides.
+
+8. After the `while` loop, the `findPalindrome` method checks if the length of the current palindrome (given by `end - start - 1`) is greater than the stored length (`totalSubStringLength`).
+
+9. If the length of the current palindrome is indeed longer, the `findPalindrome` method updates `startPoint` with the new starting index (`start + 1`) and `totalSubStringLength` with the new length (`end - start - 1`).
+
+10. The `longestPalindrome` method returns the substring of `s` starting from `startPoint` and with a length of `totalSubStringLength`, representing the longest palindromic substring found in the input string.
+
+The provided code is another valid implementation for finding the Longest Palindromic Substring. Here's an explanation of the code, with a focus on the specific block you mentioned:
+
+```java
+if (totalSubStringLength < end - start - 1) {
+    startPoint = start + 1;
+    totalSubStringLength = end - start - 1;
+}
+```
+
+This block of code is responsible for updating the variables `startPoint` and `totalSubStringLength` when a longer palindromic substring is found.
+
+- `totalSubStringLength` keeps track of the length of the longest palindromic substring found so far.
+- `startPoint` stores the starting index of the longest palindromic substring found so far.
+
+Here's how the block works:
+
+1. The block is inside the `findPalindrome` method, which is called for each character in the string `s`.
+
+2. The `while` loop inside `findPalindrome` expands the palindromic substring by checking if the characters at indices `start` and `end` are equal. It continues expanding as long as the characters are equal and there are characters available on both sides.
+
+3. After the `while` loop, the block checks if the length of the current palindrome (given by `end - start - 1`) is greater than the stored length (`totalSubStringLength`).
+
+4. If the length of the current palindrome is indeed longer, the block updates `startPoint` with the new starting index (`start + 1`) and `totalSubStringLength` with the new length (`end - start - 1`).
+
+By updating these variables, the block ensures that `startPoint` and `totalSubStringLength` always store the starting index and length of the longest palindromic substring found so far during the iterations.
+
+After the iterations are complete, the `longestPalindrome` method returns the substring of `s` starting from `startPoint` and with a length of `totalSubStringLength`, representing the longest palindromic substring found in the input string.
+
+--------------------------------------------------------------
 
 7. Merge Intervals (Question #56):
 Given an array of intervals `intervals` where `intervals[i] = [start_i, end_i]`, merge all overlapping intervals.
+Example:
+Input: [[1, 3], [2, 6], [8, 10], [15, 18]]
+Output: [[1, 6], [8, 10], [15, 18]]
+
+--------------------------------------------------------------
 
 8. Valid Parentheses (Question #20):
 Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['`, `']'`, determine if the input string is valid.
+Example:
+Input: "{[]}"
+Output: true
+
+--------------------------------------------------------------
 
 9. Minimum Window Substring (Question #76):
 Given two strings `s` and `t`, return the minimum window in `s` which will contain all the characters in `t` in complexity `O(n)`.
+Example:
+Input: s = "ADOBECODEBANC", t = "ABC"
+Output: "BANC"
+
+--------------------------------------------------------------
 
 10. Remove Element (Question #27):
 Given an array `nums` and a value `val`, remove all instances of that value in-place and return the new length.
+Example:
+Input: nums = [3, 2, 2, 3], val = 3
+Output: 2
+
+--------------------------------------------------------------
 
 11. Find the Index of the First Occurrence in a String (Question #28):
 Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+Example:
+Input: haystack = "hello", needle = "ll"
+Output: 2
+
+--------------------------------------------------------------
 
 12. Next Permutation (Question #31):
 Implement `next permutation`, which rearranges numbers into the lexicographically next greater permutation of numbers.
+Example:
+Input: nums = [1, 2, 3]
+Output: [1, 3, 2]
+
+--------------------------------------------------------------
 
 13. Remove Nth Node From End of List (Question #19):
 Given the `head` of a linked list, remove the `nth` node from the end of the list and return its head.
+Example:
+Input: 1 -> 2 -> 3 -> 4 -> 5, n = 2
+Output: 1 -> 2 -> 3 -> 5
+
+--------------------------------------------------------------
 
 14. Rotate Array (Question #189):
 Given an array, rotate the array to the right by `k` steps, where `k` is non-negative.
+Example:
+Input: nums = [1, 2, 3, 4, 5, 6, 7], k = 3
+Output: [5, 6, 7, 1, 2, 3, 4]
+
+--------------------------------------------------------------
 
 
 ##HashMap
