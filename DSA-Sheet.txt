@@ -456,6 +456,97 @@ Example:
 Input: s = "ADOBECODEBANC", t = "ABC"
 Output: "BANC"
 
+Solution:
+
+1. Initialize two pointers, `left` and `right`, to track the window boundaries. Set them both to 0 initially.
+
+2. Create two frequency maps, `targetMap` and `windowMap`, to track the character frequencies of the target string `t` and the current window in string `s`, respectively. Initially, both maps should be empty.
+
+3. Populate the `targetMap` by iterating through the characters of string `t`. For each character, update its frequency in the map.
+
+4. Initialize variables to track the minimum window length (`minWindowLength`), the starting index of the minimum window (`minWindowStart`), and a counter to keep track of the characters in `t` that have been matched in the current window (`matchedCount`). Set the `matchedCount` to 0 initially.
+
+5. Start iterating through the string `s` using the `right` pointer:
+   - For each character encountered, update its frequency in the `windowMap`.
+   - If the character is present in the `targetMap` and its frequency in the `windowMap` is less than or equal to its frequency in the `targetMap`, increment the `matchedCount` by 1.
+
+6. Check if all characters in `t` have been matched in the current window:
+   - If the `matchedCount` is equal to the length of the target string `t`, it means all characters in `t` have been matched. In this case, we have found a valid window.
+   - Update the minimum window length and the starting index of the minimum window if necessary.
+
+7. Shrink the window by moving the `left` pointer:
+   - While the `left` pointer can be moved and the current window still contains all characters from `t`, update the `windowMap` and `matchedCount` accordingly.
+   - Check if the updated window is still valid (contains all characters from `t`).
+   - If the updated window is still valid, update the minimum window length and the starting index of the minimum window if necessary.
+
+8. Repeat steps 5 to 7 until the `right` pointer reaches the end of the string `s`.
+
+9. After the loop, check if a valid window was found. If so, return the substring of `s` that corresponds to the minimum window length, starting from the `minWindowStart` index. Otherwise, return an empty string.
+
+Code:
+
+```java
+public String minWindow(String s, String t) {
+    int[] targetMap = new int[128];  // Frequency map for target string t
+    int[] windowMap = new int[128];  // Frequency map for current window in s
+
+    // Populate the targetMap with character frequencies from string t
+    for (char ch : t.toCharArray()) {
+        targetMap[ch]++;
+    }
+
+    int left = 0;                 // Left pointer of the window
+    int right = 0;                // Right pointer of the window
+    int minWindowStart = 0;       // Starting index of the minimum window
+    int minWindowLength = Integer.MAX_VALUE;  // Minimum window length
+    int matchedCount = 0;         // Counter to track matched characters
+
+    // Iterate through the string s using the right pointer
+    while (right < s.length()) {
+        char rightChar = s.charAt(right);
+        windowMap[rightChar]++;  // Update the frequency of the character in the window map
+
+        // If the current character is present in targetMap and its frequency in the window map is <= its frequency in targetMap
+        if (targetMap[rightChar] > 0 && windowMap[rightChar] <= targetMap[rightChar]) {
+            matchedCount++;  // Increment matchedCount as a character from t is matched
+        }
+
+        // Check if all characters from t have been matched in the current window
+        while (matchedCount == t.length()) {
+            // Update the minimum window length and starting index if necessary
+            if (right - left + 1 < minWindowLength) {
+                minWindowLength = right - left + 1;
+                minWindowStart = left;
+            }
+
+            // Shrink the window from the left side
+            char leftChar = s.charAt(left);
+            windowMap[leftChar]--;  // Update the frequency of the character in the window map
+
+            // If the current character was one of the characters from t, decrement the matchedCount
+            if (targetMap[leftChar] > 0 && windowMap[leftChar] < targetMap[leftChar]) {
+                matchedCount--;
+            }
+
+            left++;  // Move the left pointer to shrink the window
+        }
+
+        right++;  // Move the right pointer to expand the window
+    }
+
+    // Check if a valid window was found
+    if (minWindowLength != Integer.MAX_VALUE) {
+        return s.substring(minWindowStart, minWindowStart + minWindowLength);
+    } else {
+        return "";
+    }
+}
+```
+
+Time and Space Complexity :
+
+The time complexity of this solution is O(n), where n is the length of the string `s`. The two pointers, `left` and `right`, traverse the string `s` only once. Additionally, the frequency maps and comparisons have constant time complexity since the number of characters is limited (128 ASCII characters). Therefore, the overall time complexity is linear, meeting the complexity requirement of O(n).
+
 --------------------------------------------------------------
 
 10. Remove Element (Question #27):
@@ -464,6 +555,44 @@ Example:
 Input: nums = [3, 2, 2, 3], val = 3
 Output: 2
 
+Solution:
+In this solution, we use two pointers: `left` and `right`. The `left` pointer keeps track of the position where the non-val elements should be placed, and the `right` pointer iterates through the array to check each element.
+
+The algorithm works as follows:
+
+1. Initialize the `left` and `right` pointers to 0.
+2. Iterate through the array with the `right` pointer.
+3. If the element at the `right` pointer is not equal to `val`, it is a non-val element.
+   - Assign the non-val element to the `left` pointer position in the array.
+   - Increment the `left` pointer.
+4. Increment the `right` pointer.
+5. Repeat steps 3-4 until the end of the array.
+6. Return the value of `left`, which represents the count of elements in `nums` that are not equal to `val`.
+
+The time complexity of this solution is O(n), where n is the length of the input array `nums`. The algorithm iterates through the array only once, making it efficient.
+
+TC = O(N) SC = O(1)
+
+Code:
+```java
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int left = 0; // Left pointer
+        int right = 0; // Right pointer
+
+        while (right < nums.length) {
+            if (nums[right] != val) {
+                nums[left] = nums[right];
+                left++;
+            }
+            right++;
+        }
+
+        return left;
+    }
+}
+```
+
 --------------------------------------------------------------
 
 11. Find the Index of the First Occurrence in a String (Question #28):
@@ -471,6 +600,66 @@ Return the index of the first occurrence of needle in haystack, or -1 if needle 
 Example:
 Input: haystack = "hello", needle = "ll"
 Output: 2
+
+Solution:
+In this solution, we use two pointers: `i` for haystack and `j` for needle. The algorithm iterates through the haystack, comparing the characters with the needle.
+
+The algorithm works as follows:
+
+1. Check if the needle is empty. If so, it is always present at index 0 in haystack, so we return 0.
+2. Set the lengths of the haystack and needle to variables `m` and `n`, respectively.
+3. Iterate through the haystack from index 0 to index `m - n`.
+4. Check if the current character in haystack matches the first character in needle.
+5. If there's a match, store the starting index in the variable `start`.
+6. Check if the remaining characters in haystack match the corresponding characters in needle.
+7. If all characters in needle have matched, return the starting index `start` as the first occurrence of needle in haystack.
+8. If not all characters have matched, reset the `i` pointer to the `start` index for the next iteration.
+9. Repeat steps 4-8 until the end of the haystack is reached.
+10. If needle is not part of haystack, return -1.
+
+The time complexity of this solution is O((m-n) * n), where `m` is the length of the haystack and `n` is the length of the needle. In the worst case, the algorithm will compare each character in the haystack with the needle.
+
+TC = O(N)
+
+Code:
+
+```java
+class Solution {
+    public int strStr(String haystack, String needle) {
+        if (needle.isEmpty()) {
+            return 0; // If needle is empty, it is always present at index 0 in haystack
+        }
+        
+        int m = haystack.length();
+        int n = needle.length();
+        
+        for (int i = 0; i <= m - n; i++) {
+            int j = 0; // Needle pointer
+            
+            // Check if the current character in haystack matches the first character in needle
+            if (haystack.charAt(i) == needle.charAt(j)) {
+                int start = i; // Store the starting index in haystack
+                
+                // Check if the remaining characters in haystack match the corresponding characters in needle
+                while (j < n && i < m && haystack.charAt(i) == needle.charAt(j)) {
+                    i++;
+                    j++;
+                }
+                
+                // If j reaches the end of needle, it means all characters have matched
+                if (j == n) {
+                    return start; // Return the starting index of the first occurrence of needle in haystack
+                }
+                
+                // Reset i to the starting index in haystack for the next iteration
+                i = start;
+            }
+        }
+        
+        return -1; // Needle is not part of haystack
+    }
+}
+```
 
 --------------------------------------------------------------
 
@@ -488,6 +677,51 @@ Example:
 Input: 1 -> 2 -> 3 -> 4 -> 5, n = 2
 Output: 1 -> 2 -> 3 -> 5
 
+Solution:
+
+The solution uses two pointers, `leftPtr` and `rightPtr`, to remove the `nth` node from the end of the linked list. Here's the explanation of the solution:
+
+1. Create a `dummyPtr` as a dummy node with a value of 0 and set its `next` pointer to the `head` of the linked list. This is done to handle the edge case where the `nth` node to be removed is the first node in the list.
+
+2. Initialize the `leftPtr` to the `dummyPtr` and the `rightPtr` to the `head`.
+
+3. Move the `rightPtr` `n` steps forward. This ensures that the distance between the `leftPtr` and `rightPtr` is exactly `n` nodes.
+
+4. While `rightPtr` is not null, move both the `leftPtr` and `rightPtr` one step forward. This continues until the `rightPtr` reaches the end of the list.
+
+5. At this point, the `leftPtr` will be pointing to the node just before the `nth` node from the end.
+
+6. Update the `leftPtr` to skip the `nth` node by adjusting its `next` pointer to point to the node after the `nth` node.
+
+7. Finally, return the `dummyPtr.next`, which is the updated head of the linked list.
+
+Code : 
+
+```java
+public ListNode removeNthFromEnd(ListNode head, int n) {
+    ListNode dummyPtr = new ListNode(0, head); // Create a dummy node
+    ListNode leftPtr = dummyPtr; // Initialize left pointer to the dummy node
+    ListNode rightPtr = head; // Initialize right pointer to the head
+
+    while (n > 0 && rightPtr != null) {
+        rightPtr = rightPtr.next; // Move right pointer n steps forward
+        n--;
+    }
+
+    while (rightPtr != null) {
+        rightPtr = rightPtr.next; // Move both pointers one step forward
+        leftPtr = leftPtr.next;
+    }
+
+    leftPtr.next = leftPtr.next.next; // Skip the nth node by adjusting the next pointer of leftPtr
+
+    return dummyPtr.next; // Return the head of the updated linked list
+}
+```
+
+The time complexity of this solution is O(L), where L is the length of the linked list. The algorithm iterates through the linked list only once, performing a constant number of operations at each node. Therefore, the time complexity is linear in the length of the linked list.
+
+
 --------------------------------------------------------------
 
 14. Rotate Array (Question #189):
@@ -495,6 +729,55 @@ Given an array, rotate the array to the right by `k` steps, where `k` is non-neg
 Example:
 Input: nums = [1, 2, 3, 4, 5, 6, 7], k = 3
 Output: [5, 6, 7, 1, 2, 3, 4]
+Explanation:
+rotate 1 steps to the right: [7,1,2,3,4,5,6]
+rotate 2 steps to the right: [6,7,1,2,3,4,5]
+rotate 3 steps to the right: [5,6,7,1,2,3,4]
+
+
+Solution : 
+
+The solution uses a reverse technique to rotate the array in-place. Here's the explanation of the solution:
+
+1. In the `rotate` function, start by updating the value of `k` to `k % nums.length`. This is done to handle cases where `k` is larger than the length of the array. Taking the modulus ensures that `k` is within the valid range.
+
+2. Initialize the variable `N` to `nums.length - 1`. This represents the last index of the array.
+
+3. Call the `reverse` function three times:
+   a. Reverse the entire array using `reverse(nums, 0, N)`. This step effectively reverses the entire array.
+   b. Reverse the first `k` elements of the array using `reverse(nums, 0, k - 1)`. This step reverses the subarray containing the first `k` elements.
+   c. Reverse the remaining elements of the array using `reverse(nums, k, N)`. This step reverses the subarray containing the remaining elements after the first `k` elements.
+
+The `reverse` function is a helper function used to reverse a subarray within the array. It takes the array, the left index, and the right index as parameters.
+
+
+Code : 
+
+```java
+public void rotate(int[] nums, int k) {
+    k = k % nums.length; // Handle cases where k is larger than the length of the array
+    int N = nums.length - 1; // Last index of the array
+    
+    reverse(nums, 0, N); // Reverse the entire array
+    reverse(nums, 0, k - 1); // Reverse the first k elements
+    reverse(nums, k, N); // Reverse the remaining elements
+}
+
+public void reverse(int[] arr, int left, int right) {
+    while (left <= right) {
+        int temp = arr[left]; // Swap elements at left and right indices
+        arr[left] = arr[right];
+        arr[right] = temp;
+        left++; // Move left pointer towards the right
+        right--; // Move right pointer towards the left
+    }
+}
+```
+Time and Space Complexity :
+
+The time complexity of this solution is O(N), where N is the length of the array. The algorithm performs three reversals, each of which takes O(N/2) time. However, in big O notation, we ignore constant factors, so the overall time complexity is simplified to O(N).
+
+The space complexity of the solution is O(1) since the algorithm operates in-place without using any additional data structures.
 
 --------------------------------------------------------------
 
