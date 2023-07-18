@@ -391,6 +391,63 @@ Example:
 Input: "{[]}"
 Output: true
 
+Solution:
+
+1. The `isValid` method takes a string `s` as input and returns a boolean value indicating whether the parentheses in `s` are valid.
+
+2. The method initializes a `Stack` data structure named `stack` to keep track of the opening parentheses encountered.
+
+3. It also initializes a variable `n` with the length of the input string `s`.
+
+4. The method iterates through each character of the input string using a `for` loop.
+
+5. For each character, the method checks if it is an opening parenthesis (`(`, `[`, `{`). If so, it pushes the character onto the stack.
+
+6. If the character is a closing parenthesis (`)`, `]`, `}`), the method checks if the stack is empty. If it is, this means there is no matching opening parenthesis for the current closing parenthesis, so the string is invalid, and the method returns `false`.
+
+7. If the stack is not empty, the method pops the top character from the stack and compares it with the current closing parenthesis. If they do not match, this means the parentheses are not in the correct order, and the method returns `false`.
+
+8. If all parentheses are matched and valid, the method continues the loop until all characters in the string are processed.
+
+9. After the loop, the method checks if there are any remaining opening parentheses in the stack. If there are, this means the string is invalid because some opening parentheses were not closed, and the method returns `false`. Otherwise, it returns `true`.
+
+The code follows a straightforward approach using a stack to track the opening parentheses encountered. It compares each closing parenthesis with the top of the stack to ensure that they match. If the stack is empty or the parentheses do not match, it returns `false`. Otherwise, if all parentheses are valid, it returns `true`.
+
+Time and Space complexity :
+
+The time complexity of this implementation is O(n), where n is the length of the input string `s`, as we iterate through each character once. The space complexity is O(n) as we use a stack to store opening parentheses, and in the worst case, all characters in `s` could be opening parentheses.
+
+```Java
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+
+        int n = s.length();
+
+        for (int i = 0; i < n; i++) {
+            char currChar = s.charAt(i);
+
+            if (currChar == '(' || currChar == '[' || currChar == '{') {
+                stack.push(currChar);
+            } else {
+                if (stack.isEmpty()){
+                    return false;
+                }
+                char poppedChar = stack.pop();
+                if (currChar == ')' && poppedChar != '('){
+                    return false;
+                } else if (currChar == ']' && poppedChar != '[') {
+                    return false;
+                } else if (currChar == '}' && poppedChar != '{'){
+                    return false;
+                }
+            }
+        }
+        return stack.size() > 0 ? false : true;
+    }
+}
+```
+
 --------------------------------------------------------------
 
 9. Minimum Window Substring (Question #76):
