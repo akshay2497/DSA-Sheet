@@ -303,6 +303,19 @@ By updating these variables, the block ensures that `startPoint` and `totalSubSt
 
 After the iterations are complete, the `longestPalindrome` method returns the substring of `s` starting from `startPoint` and with a length of `totalSubStringLength`, representing the longest palindromic substring found in the input string.
 
+
+Time complexity Explanation
+
+1. The `longestPalindrome` method contains a `for` loop that iterates through each character of the input string. Since there are n characters in the string, this loop has a time complexity of O(n).
+
+2. Inside the `for` loop, the `findPalindrome` method is called twice for each character. This results in a nested loop structure where, in the worst case, each iteration of the outer loop triggers a loop iteration in the `findPalindrome` method.
+
+3. The `findPalindrome` method contains a `while` loop that expands around the center indices until the characters are no longer equal or the boundary of the string is reached. This expansion process has a time complexity of O(n) in the worst case, where n is the length of the string.
+
+4. Since the `findPalindrome` method is called twice for each character in the `longestPalindrome` method, and the expansion process within each call has a time complexity of O(n), the overall time complexity of the `longestPalindrome` method is O(n * n) = O(n^2).
+
+Therefore, the overall time complexity of the provided `Solution` class is O(n^2), where n is the length of the input string `s`.
+
 --------------------------------------------------------------
 
 7. Merge Intervals (Question #56):
