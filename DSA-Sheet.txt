@@ -1129,7 +1129,6 @@ public int searchInsert(int[] nums, int target) {
     return lastLessValueIndex; // Return the index where the target would be inserted.
 }
 ```
-
 ------------------------------------------------------------
 
 6. Find Peak Element (Question #162) [Medium]:
@@ -1138,7 +1137,90 @@ A peak element in an array is an element that is strictly greater than its neigh
 ------------------------------------------------------------
 
 7. Search for a Range (Question #34) [Medium]:
-Given an array of integers `nums` sorted in ascending order, find the starting and ending position of a given target value `target`. If the target is not found in the array, return `[-1, -1]`.
+
+Given an array of integers nums sorted in non-decreasing order, find the starting and ending position of a given target value.
+
+If target is not found in the array, return [-1, -1].
+
+You must write an algorithm with O(log n) runtime complexity.
+
+Example 1:
+
+Input: nums = [5,7,7,8,8,10], target = 8
+Output: [3,4]
+Example 2:
+
+Input: nums = [5,7,7,8,8,10], target = 6
+Output: [-1,-1]
+Example 3:
+
+Input: nums = [], target = 0
+Output: [-1,-1]
+
+Solution:
+The given code aims to find the first and last occurrences of the target element in a sorted array. The algorithm utilizes two binary search loops to find these occurrences.
+
+1. The first binary search loop is used to find the leftmost occurrence of the target. It works in a similar way to standard binary search, but when the target is found, it continues searching on the left side to find the leftmost occurrence.
+2. The second binary search loop is used to find the rightmost occurrence of the target. It also works similarly to standard binary search, but when the target is found, it continues searching on the right side to find the rightmost occurrence.
+
+Time Complexity (TC):
+The time complexity of this algorithm is O(log N) for each binary search loop, where N is the number of elements in the `nums` array. Since we have two binary search loops, the overall time complexity remains O(log N).
+
+Space Complexity (SC):
+The space complexity of this algorithm is O(1) because it uses a constant amount of extra space for the variables (`left`, `right`, `mid`, `result`, `leftMostIndex`, and `rightMostIndex`) regardless of the size of the input array.
+
+
+```java
+public int[] searchRange(int[] nums, int target) {
+    int n = nums.length;
+    if (n == 0) {
+        return new int[]{-1, -1}; // If the input array is empty, return [-1, -1].
+    }
+
+    int left = 0;
+    int right = nums.length - 1;
+
+    int[] result = {-1, -1}; // Initialize the result array with [-1, -1].
+    int leftMostIndex = -1; // Initialize variables to store the leftmost and rightmost indices of the target.
+    int rightMostIndex = -1;
+
+    // First, we'll find the leftmost occurrence of the target using binary search.
+    while (left <= right) {
+        int mid = (right + left) / 2;
+
+        if (nums[mid] == target) {
+            leftMostIndex = mid; // If target found, store the index in leftMostIndex and continue searching on the left side.
+            right = mid - 1; // Adjust the right pointer to search in the left half.
+        } else if (nums[mid] < target) {
+            left = mid + 1; // If target is greater than mid, search in the right half.
+        } else {
+            right = mid - 1; // If target is less than mid, search in the left half.
+        }
+    }
+
+    left = 0;
+    right = nums.length - 1;
+
+    // Now, we'll find the rightmost occurrence of the target using binary search.
+    while (left <= right) {
+        int mid = (right + left) / 2;
+
+        if (nums[mid] == target) {
+            rightMostIndex = mid; // If target found, store the index in rightMostIndex and continue searching on the right side.
+            left = mid + 1; // Adjust the left pointer to search in the right half.
+        } else if (nums[mid] < target) {
+            left = mid + 1; // If target is greater than mid, search in the right half.
+        } else {
+            right = mid - 1; // If target is less than mid, search in the left half.
+        }
+    }
+
+    result[0] = leftMostIndex; // Update the result array with the leftmost and rightmost indices of the target.
+    result[1] = rightMostIndex;
+    return result; // Return the result array.
+}
+```
+------------------------------------------------------------
 
 8. Sorted Array to Binary Search Tree (Question #108) [Easy]:
 Given an integer array `nums` where the elements are sorted in ascending order, convert it to a height-balanced binary search tree (BST). A height-balanced BST is a binary tree in which the depth of the two subtrees of every node never differs by more than one.
