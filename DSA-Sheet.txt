@@ -1132,7 +1132,87 @@ public int searchInsert(int[] nums, int target) {
 ------------------------------------------------------------
 
 6. Find Peak Element (Question #162) [Medium]:
-A peak element in an array is an element that is strictly greater than its neighbors. Given an integer array `nums`, find a peak element, and return its index. If the array contains multiple peaks, return the index to any of the peaks.
+
+A peak element is an element that is strictly greater than its neighbors.
+
+Given a 0-indexed integer array nums, find a peak element, and return its index. If the array contains multiple peaks, return the index to any of the peaks.
+
+You may imagine that nums[-1] = nums[n] = -∞. In other words, an element is always considered to be strictly greater than a neighbor that is outside the array.
+
+You must write an algorithm that runs in O(log n) time.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,3,1]
+Output: 2
+Explanation: 3 is a peak element and your function should return the index number 2.
+Example 2:
+
+Input: nums = [1,2,1,3,5,6,4]
+Output: 5
+Explanation: Your function can return either index number 1 where the peak element is 2, or index number 5 where the peak element is 6.
+
+
+Solution:
+
+1. The first part of the code checks for special cases:
+   - If there's only one element in the array, it is the peak element.
+   - If the first element is greater than the second, it is the peak element.
+   - If the last element is greater than the second-to-last, it is the peak element.
+   These checks handle the edge cases and optimize the algorithm for arrays that have a peak at the start or end.
+
+2. After handling the special cases, the algorithm proceeds with binary search to find a peak element in the remaining portion of the array. The binary search process continues until the left and right pointers meet or cross each other.
+
+3. In each iteration of the binary search loop, the middle element (mid) is checked to see if it is a peak element (greater than its adjacent elements). If it is a peak element, its index is returned.
+
+4. If the middle element is not a peak element, the algorithm determines whether it is in an increasing or decreasing sequence by comparing it with its adjacent element. Based on this information, the left or right pointer is adjusted to search for a peak in the appropriate direction.
+
+Time Complexity (TC):
+The time complexity of this algorithm is O(log N) because binary search reduces the search space by half in each iteration, where N is the number of elements in the `nums` array.
+
+Space Complexity (SC):
+The space complexity of this algorithm is O(1) because it uses a constant amount of extra space for the variables (`left`, `right`, `mid`, and `n`) regardless of the size of the input array.
+
+```java
+public int findPeakElement(int[] nums) {
+    int n = nums.length;
+    if (n == 1) {
+        return 0; // If there's only one element in the array, it is the peak element.
+    }
+
+    if (nums[0] > nums[1]) {
+        return 0; // If the first element is greater than the second, it is the peak element.
+    }
+
+    if (nums[n - 1] > nums[n - 2]) {
+        return n - 1; // If the last element is greater than the second-to-last, it is the peak element.
+    }
+
+    int left = 1; // Initialize the left pointer to the second element.
+    int right = n - 2; // Initialize the right pointer to the second-to-last element.
+
+    while (left <= right) { // Perform binary search until the left and right pointers meet or cross each other.
+        int mid = (left + right) / 2; // Calculate the middle index.
+
+        // Check if the middle element is a peak element (greater than its adjacent elements).
+        if (nums[mid] > nums[mid + 1] && nums[mid] > nums[mid - 1]) {
+            return mid; // If the middle element is a peak, return its index.
+        }
+
+        // If the middle element is in an increasing sequence, move the left pointer to mid + 1.
+        if (nums[mid] < nums[mid + 1]) {
+            left = mid + 1;
+        } else if (nums[mid] > nums[mid + 1]) {
+            // If the middle element is in a decreasing sequence, move the right pointer to mid - 1.
+            right = mid - 1;
+        }
+    }
+
+    return -1; // Return -1 if a peak element is not found in the array.
+}
+```
 
 ------------------------------------------------------------
 
@@ -1225,22 +1305,157 @@ public int[] searchRange(int[] nums, int target) {
 8. Sorted Array to Binary Search Tree (Question #108) [Easy]:
 Given an integer array `nums` where the elements are sorted in ascending order, convert it to a height-balanced binary search tree (BST). A height-balanced BST is a binary tree in which the depth of the two subtrees of every node never differs by more than one.
 
+Input: nums = [-10,-3,0,5,9]
+Output: [0,-3,9,-10,null,5]
+Explanation: [0,-10,5,null,-3,null,9] is also accepted:
+
+
+Approach:
+The given problem requires converting a sorted integer array into a height-balanced binary search tree (BST). A height-balanced BST is a binary tree in which the difference in the heights of the left and right subtrees of every node is at most one.
+
+To construct a height-balanced BST, we can follow a recursive approach:
+The main thing to notice here is Array is Sorted so the root will be always the middle element of the array
+
+1. Find the middle element of the sorted array. This element will be the root of the BST.
+2. Recursively construct the left subtree using the elements to the left of the middle element.
+3. Recursively construct the right subtree using the elements to the right of the middle element.
+4. Return the root node of the constructed BST.
+
+Time Complexity (TC):
+The time complexity of this algorithm is O(N), where N is the number of elements in the `nums` array. This is because each element of the array is visited once to construct the corresponding node in the BST.
+
+Space Complexity (SC):
+The space complexity of this algorithm is O(log N) due to the recursive call stack. In a balanced binary search tree, the maximum depth of the recursion is log N.
+
+Code:
+
+```java
+public TreeNode sortedArrayToBST(int[] nums) {
+    if (nums.length == 0) {
+        return null; // If the input array is empty, return null as there are no nodes to create the BST.
+    }
+
+    return createTree(nums, 0, nums.length - 1); // Call the helper function to create the BST with the entire array.
+}
+
+public TreeNode createTree(int[] nums, int start, int end) {
+    if (start > end) {
+        return null; // Base case: If the start index becomes greater than the end index, return null.
+    }
+
+    int mid = (start + end) / 2; // Calculate the middle index.
+
+    TreeNode node = new TreeNode(nums[mid]); // Create a new node with the middle element as the value.
+
+    // Recursively construct the left and right subtrees using the elements to the left and right of the middle element.
+    node.left = createTree(nums, start, mid - 1);
+    node.right = createTree(nums, mid + 1, end);
+
+    return node; // Return the root node of the constructed BST.
+}
+```
+------------------------------------------------------------
+
 9. Implement Binary Search (Question #702) [Medium]:
 Given a sorted (in ascending order) integer array `nums` and a target value `target`, write a function to implement binary search iteratively and return the index of the target if it exists in the array. If the target is not found, return -1.
 
-10. Find First and Last Position of Element in Sorted Array (Question #349) [Medium]:
-Given an array of integers `nums` sorted in ascending order, find the starting and ending position of a given target value `target`. If the target is not found in the array, return `[-1, -1]`.
+Given an integer array sorted in ascending order, write a function to search target in nums.  If target exists, then return its index, otherwise return -1. However, the array size is unknown to you. You may only access the array using an ArrayReader interface, where ArrayReader.get(k) returns the element of the array at index k (0-indexed).
 
-11. Word Search (Question #79) [Medium]:
-Given a 2D board of letters and a word, determine if the word exists in the grid. The word can be constructed from adjacent letters horizontally or vertically. Each letter on the board can only be used once.
+You may assume all integers in the array are less than 10000, and if you access the array out of bounds, ArrayReader.get will return 2147483647.
 
-12. Maximum Subarray (Question #11) [Medium]:
-Given an integer array `nums`, find the contiguous subarray (containing at least one number) with the largest sum and return its sum.
+ 
 
-13. Kth Largest Element in an Array (Question #215) [Medium]:
-Given an integer array `nums` and an integer `k`, return the `kth` largest element in the array.
+Example 1:
+
+Input: array = [-1,0,3,5,9,12], target = 9
+Output: 4
+Explanation: 9 exists in nums and its index is 4
+Example 2:
+
+Input: array = [-1,0,3,5,9,12], target = 2
+Output: -1
+Explanation: 2 does not exist in nums so return -1
+ 
+
+Note:
+
+You may assume that all elements in the array are unique.
+The value of each element in the array will be in the range [-9999, 9999].
 
 
+public int search(ArrayReader reader, int target) {
+    int left = 0, right = 20000;
+    while (left < right) {
+        int mid = left + right >> 1;
+        if (reader.get(mid) >= target) {
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
+    }
+    return reader.get(left) == target ? left : -1;
+}
+
+-------------------------------------------------------------
+-------------------------------------------------------------
+##Heap
+
+1. Kth Largest Element in an Array (Question #215) [Medium]:
+Given an integer array nums and an integer k, return the kth largest element in the array.
+
+Note that it is the kth largest element in the sorted order, not the kth distinct element.
+
+Can you solve it without sorting?
+
+
+Example 1:
+
+Input: nums = [3,2,1,5,6,4], k = 2
+Output: 5
+Example 2:
+
+Input: nums = [3,2,3,1,2,4,5,5,6], k = 4
+Output: 4
+
+Approach:
+The min heap will keep track of the k largest elements seen so far, with the smallest element at the top (root) of the heap. When the heap contains k elements, the smallest element will be the kth largest element among all elements seen so far.
+
+1. We initialize an empty priority queue (`queue`) which acts as a min-heap.
+
+2. We iterate through each element `i` in the input `nums` array.
+
+3. If the priority queue (`queue`) has already k elements, we check if the smallest element (top element) in the min heap (`queue.peek()`) is less than the current element `i`. If it is, it means `i` is larger than the smallest element, so we remove the smallest element from the min heap and add the current element `i` to the heap. This ensures that we keep track of the k largest elements in the min heap at all times.
+
+4. If the priority queue has less than k elements, we simply add the current element `i` to the min heap.
+
+5. After processing all elements in the input array, the top element of the min heap (`queue.poll()`) will be the kth largest element.
+
+Time Complexity (TC):
+The time complexity of this algorithm is O(N log K), where N is the number of elements in the input array and K is the value of `k`. For each element, we perform heap operations (`offer()` and `poll()`), which take O(log K) time in the worst case. Since we have N elements, the overall time complexity is O(N log K).
+
+Space Complexity (SC):
+The space complexity of this algorithm is O(K) because we use a min heap (PriorityQueue) to store at most k elements at any given time.
+
+```java
+public int findKthLargest(int[] nums, int k) {
+    PriorityQueue<Integer> queue = new PriorityQueue<>();
+
+    for (int i : nums) {
+        if (queue.size() == k) {
+            // If the priority queue (min heap) has already k elements, compare the smallest element with the current element i.
+            // If i is greater than the smallest element (i.e., the top element of the min heap), remove the smallest element and add i to the heap.
+            if (queue.peek() < i) {
+                queue.poll(); // Remove the smallest element from the min heap.
+                queue.offer(i); // Add the current element i to the min heap.
+            }
+        } else {
+            queue.offer(i); // If the priority queue has less than k elements, simply add the current element i to the min heap.
+        }
+    }
+
+    return queue.poll(); // After processing all elements, the top element of the min heap will be the kth largest element.
+}
+```
 --------------------------------------------------------------
 --------------------------------------------------------------
 
