@@ -1398,6 +1398,87 @@ public int search(ArrayReader reader, int target) {
 
 -------------------------------------------------------------
 -------------------------------------------------------------
+##Sliding Window
+
+1. Maximum Average Subarray I - (Maximum Sum Subarray of Size K) (easy) - LeetCode #643
+You are given an integer array nums consisting of n elements, and an integer k.
+
+Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer with a calculation error less than 10-5 will be accepted.
+
+Example 1:
+
+Input: nums = [1,12,-5,-6,50,3], k = 4
+Output: 12.75000
+Explanation: Maximum average is (12 - 5 - 6 + 50) / 4 = 51 / 4 = 12.75
+Example 2:
+
+Input: nums = [5], k = 1
+Output: 5.00000
+
+Approach:
+The problem requires finding a contiguous subarray of length `k` with the maximum average value. To do this efficiently, we can use a sliding window approach.
+
+1. Initialize two pointers, `left` and `right`, both set to 0.
+2. Calculate the sum of the first `k` elements (i.e., the sum of the first window) and store it in the `window` variable.
+3. Calculate the average of the current window, `window / k`, and set it as the initial `ans`.
+4. Move the `right` pointer to `k` to create the first window of length `k`.
+5. For each subsequent window, keep adding the next element (`nums[right]`) and removing the leftmost element (`nums[right - k]`) from the window sum. Calculate the average for each window and update the `ans` if a larger average is found.
+6. Continue this process until the `right` pointer reaches the end of the array.
+
+Code:
+```java
+public double findMaxAverage(int[] nums, int k) {
+    int left = 0; // Left pointer for the sliding window
+    int n = nums.length; // Length of the array
+    double ans = 0; // Variable to store the answer (maximum average)
+    double window = 0; // Variable to store the sum of the current window
+
+    // Calculate the sum of the first window (first k elements)
+    for (int i = 0; i < k; i++) {
+        window += nums[i];
+    }
+
+    // Initialize the answer with the average of the first window
+    ans = window / k;
+
+    // Start moving the right pointer to form the subsequent windows
+    for (int right = k; right < n; right++) {
+        // Add the next element and remove the leftmost element from the window sum
+        window += nums[right] - nums[right - k];
+        // Update the answer if a larger average is found
+        ans = Math.max(ans, window / k);
+    }
+
+    return ans; // Return the maximum average found
+}
+```
+
+Time Complexity (TC):
+The time complexity of this algorithm is O(n), where n is the number of elements in the `nums` array. We iterate through the array once to calculate the initial window sum, and then we move the `right` pointer from `k` to `n` to form the subsequent windows. Each iteration takes constant time.
+
+Space Complexity (SC):
+The space complexity of this algorithm is O(1) because we use only a constant amount of extra space to store the variables, regardless of the size of the input array.
+
+-----------------------------------------------------
+
+2. Minimum Window Substring (hard) - LeetCode #76
+3. Longest Substring with At Most Two Distinct Characters (medium) - LeetCode #159
+4. Fruit Into Baskets (medium) - LeetCode #904
+5. Longest Repeating Character Replacement (medium) - LeetCode #424
+6. Permutation in String (medium) - LeetCode #567
+7. Longest Substring Without Repeating Characters (medium) - LeetCode #3
+8. Find All Anagrams in a String (medium) - LeetCode #438
+9. Subarrays with K Different Integers (hard) - LeetCode #992
+10. Minimum Size Subarray Sum (medium) - LeetCode #209
+11. Shortest Subarray with Sum at Least K (hard) - LeetCode #862
+12. Replace the Substring for Balanced String (medium) - LeetCode #1234
+13. Find K-Length Substrings With No Repeated Characters (medium) - LeetCode #1100
+14. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit (medium) - LeetCode #1438
+15. Max Consecutive Ones III (medium) - LeetCode #1004
+
+
+-------------------------------------------------------------
+-------------------------------------------------------------
 ##Heap
 
 1. Kth Largest Element in an Array (Question #215) [Medium]:
