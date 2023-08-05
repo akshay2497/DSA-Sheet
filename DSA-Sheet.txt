@@ -2652,6 +2652,7 @@ class Solution {
 -------------------------------------------------------------
 ##Heap
 
+
 1. Kth Largest Element in an Array (Question #215) [Medium]:
 Given an integer array nums and an integer k, return the kth largest element in the array.
 
@@ -2708,6 +2709,68 @@ public int findKthLargest(int[] nums, int k) {
     return queue.poll(); // After processing all elements, the top element of the min heap will be the kth largest element.
 }
 ```
+
+
+1. **Kth Largest Element in an Array**
+   - LeetCode #215
+
+2. **Merge k Sorted Lists**
+   - LeetCode #23
+
+3. **Top K Frequent Elements**
+   - LeetCode #347
+
+4. **Find Median from Data Stream**
+   - LeetCode #295
+
+5. **Kth Smallest Element in a BST**
+   - LeetCode #230
+
+6. **Sliding Window Maximum**
+   - LeetCode #239
+
+7. **Find K Pairs with Smallest Sums**
+   - LeetCode #373
+
+8. **Sort Characters By Frequency**
+   - LeetCode #451
+
+9. **Find K Closest Elements**
+   - LeetCode #658
+
+10. **Top K Frequent Words**
+    - LeetCode #692
+
+11. **Find Median from Data Stream**
+    - LeetCode #295
+
+12. **Last Stone Weight**
+    - LeetCode #1046
+
+13. **Find Kth Smallest Pair Distance**
+    - LeetCode #719
+
+14. **K Closest Points to Origin**
+    - LeetCode #973
+
+15. **Smallest Range Covering Elements from K Lists**
+    - LeetCode #632
+
+16. **Kth Largest Element in a Stream**
+    - LeetCode #703
+
+17. **Find the Kth Smallest Sum of a Matrix With Sorted Rows**
+    - LeetCode #1439
+
+18. **Find K Pairs with Smallest Sums**
+    - LeetCode #373
+
+19. **Find Kth Smallest Element in a Sorted Matrix**
+    - LeetCode #378
+
+20. **Find K Closest Elements**
+    - LeetCode #658
+
 --------------------------------------------------------------
 --------------------------------------------------------------
 
@@ -2774,9 +2837,268 @@ public int findKthLargest(int[] nums, int k) {
 
 --------------------------------------------------------------
 --------------------------------------------------------------
+#Tree
+
+1. **Binary Tree Inorder Traversal**
+   - LeetCode #94
+
+2. **Validate Binary Search Tree**
+   - LeetCode #98
+
+3. **Maximum Depth of Binary Tree**
+   - LeetCode #104
+
+4. **Symmetric Tree**
+   - LeetCode #101
+
+5. **Binary Tree Level Order Traversal**
+   - LeetCode #102
+
+6. **Path Sum**
+   - LeetCode #112
+
+7. **Construct Binary Tree from Preorder and Inorder Traversal**
+   - LeetCode #105
+
+8. **Construct Binary Tree from Inorder and Postorder Traversal**
+   - LeetCode #106
+
+9. **Lowest Common Ancestor of a Binary Tree**
+   - LeetCode #236
+
+10. **Binary Tree Maximum Path Sum**
+    - LeetCode #124
+
+11. **Binary Tree Zigzag Level Order Traversal**
+    - LeetCode #103
+
+12. **Invert Binary Tree**
+    - LeetCode #226
+
+13. **Same Tree**
+    - LeetCode #100
+
+14. **Binary Tree Right Side View**
+    - LeetCode #199
+
+15. **Binary Tree Preorder Traversal**
+    - LeetCode #144
+
+16. **Binary Tree Postorder Traversal**
+    - LeetCode #145
+
+17. **Binary Search Tree Iterator**
+    - LeetCode #173
+
+18. **Kth Smallest Element in a BST**
+    - LeetCode #230
+
+19. **Subtree of Another Tree**
+    - LeetCode #572
+
+20. **Binary Tree Cameras**
+    - LeetCode #968
+
+--------------------------------------------------------------
+--------------------------------------------------------------
+#Array
+
+1. **Two Sum**
+   - LeetCode #1
+
+2. **Best Time to Buy and Sell Stock**
+   - LeetCode #121
+
+3. **Contains Duplicate**
+   - LeetCode #217
+
+4. **Product of Array Except Self**
+   - LeetCode #238
+
+5. **Maximum Subarray**
+   - LeetCode #53
+
+6. **Move Zeroes**
+   - LeetCode #283
+
+7. **3Sum**
+   - LeetCode #15
+
+8. **Merge Intervals**
+   - LeetCode #56
+
+9. **Rotate Array**
+   - LeetCode #189
+
+10. **Group Anagrams**
+    - LeetCode #49
+
+11. **Valid Sudoku**
+    - LeetCode #36
+
+12. **Container With Most Water**
+    - LeetCode #11
+
+13. **Minimum Size Subarray Sum**
+    - LeetCode #209
+
+14. **Search in Rotated Sorted Array**
+    - LeetCode #33
+
+15. **Find First and Last Position of Element in Sorted Array**
+    - LeetCode #34
+
+16. **Set Matrix Zeroes**
+    - LeetCode #73
+
+17. **Jump Game**
+    - LeetCode #55
+
+18. **Majority Element**
+    - LeetCode #169
+
+19. **Missing Number**
+    - LeetCode #268
+
+20. **Valid Parentheses**
+    - LeetCode #20
+
+--------------------------------------------------------------
+--------------------------------------------------------------
+
+#Stack
+
+1. **Valid Parentheses**
+   - LeetCode #20
+
+2. **Min Stack**
+   - LeetCode #155
+
+3. **Evaluate Reverse Polish Notation**
+   - LeetCode #150
+
+4. **Decode String**
+   - LeetCode #394
+
+5. **Longest Valid Parentheses**
+   - LeetCode #32
+
+6. **Implement Queue using Stacks**
+   - LeetCode #232
+
+7. **Next Greater Element I**
+   - LeetCode #496
+
+8. **Daily Temperatures**
+   - LeetCode #739
+
+9. **Remove All Adjacent Duplicates In String**
+   - LeetCode #1047
+
+10. **Backspace String Compare**
+    - LeetCode #844
+
+11. **Implement Stack using Queues**
+    - LeetCode #225
+
+12. **Online Stock Span**
+    - LeetCode #901
+
+13. **Valid Parenthesis String**
+    - LeetCode #678
+
+14. **Remove Outermost Parentheses**
+    - LeetCode #1021
+
+15. **Score of Parentheses**
+    - LeetCode #856
+
+16. **Largest Rectangle in Histogram**
+    - LeetCode #84
+
+17. **Baseball Game**
+    - LeetCode #682
+
+18. **Flood Fill**
+    - LeetCode #733
+
+19. **Maximal Rectangle**
+    - LeetCode #85
+
+20. **Trapping Rain Water**
+    - LeetCode #42
+
+--------------------------------------------------------------
+--------------------------------------------------------------
+
+#Queue
+
+1. **Implement Queue using Stacks**
+   - LeetCode #232
+
+2. **Queue Reconstruction by Height**
+   - LeetCode #406
+
+3. **Design Circular Queue**
+   - LeetCode #622
+
+4. **Sliding Window Maximum**
+   - LeetCode #239
+
+5. **Implement Stack using Queues**
+   - LeetCode #225
+
+6. **Moving Average from Data Stream**
+   - LeetCode #346
+
+7. **Number of Recent Calls**
+   - LeetCode #933
+
+8. **Design Circular Deque**
+   - LeetCode #641
+
+9. **The Maze**
+   - LeetCode #490
+
+10. **Shortest Path in Binary Matrix**
+    - LeetCode #1091
+
+11. **Perfect Squares**
+    - LeetCode #279
+
+12. **Binary Tree Right Side View**
+    - LeetCode #199
+
+13. **Rotten Oranges**
+    - LeetCode #994
+
+14. **As Far from Land as Possible**
+    - LeetCode #1162
+
+15. **Moving Average from Data Stream**
+    - LeetCode #346
+
+16. **Snakes and Ladders**
+    - LeetCode #909
+
+17. **Open the Lock**
+    - LeetCode #752
+
+18. **Implement Stack using Queues**
+    - LeetCode #225
+
+19. **Sliding Window Maximum**
+    - LeetCode #239
+
+20. **Design Circular Queue**
+    - LeetCode #622
+
+--------------------------------------------------------------
+--------------------------------------------------------------
 
 ##HashMap
 
+--------------------------------------------------------------
 1. Two Sum (Question #1):
 Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.
 Example:
@@ -2796,3 +3118,64 @@ public int[] twoSum(int[] nums, int target) {
     }
     return new int[]{};
 }
+
+-------------------------------------------------
+
+2. **Valid Anagram**
+   - LeetCode #242
+
+3. **Two Sum III - Data Structure Design**
+   - LeetCode #170
+
+4. **Contains Duplicate**
+   - LeetCode #217
+
+5. **Longest Substring Without Repeating Characters**
+   - LeetCode #3
+
+6. **Most Common Word**
+   - LeetCode #819
+
+7. **Word Pattern**
+   - LeetCode #290
+
+8. **First Unique Character in a String**
+   - LeetCode #387
+
+9. **Minimum Window Substring**
+   - LeetCode #76
+
+10. **Group Anagrams**
+    - LeetCode #49
+
+11. **Subarray Sum Equals K**
+    - LeetCode #560
+
+12. **Intersection of Two Arrays II**
+    - LeetCode #350
+
+13. **Find All Anagrams in a String**
+    - LeetCode #438
+
+14. **Longest Consecutive Sequence**
+    - LeetCode #128
+
+15. **Isomorphic Strings**
+    - LeetCode #205
+
+16. **Top K Frequent Elements**
+    - LeetCode #347
+
+17. **Sort Characters By Frequency**
+    - LeetCode #451
+
+18. **Minimum Index Sum of Two Lists**
+    - LeetCode #599
+
+19. **Two Sum IV - Input is a BST**
+    - LeetCode #653
+
+20. **Fraction to Recurring Decimal**
+    - LeetCode #166
+
+
