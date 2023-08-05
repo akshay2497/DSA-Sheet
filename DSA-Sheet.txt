@@ -487,28 +487,28 @@ Code:
 
 ```java
 public String minWindow(String s, String t) {
-    int[] targetMap = new int[128];  // Frequency map for target string t
-    int[] windowMap = new int[128];  // Frequency map for current window in s
+    HashMap<Character, Integer> targetMap = new HashMap<>(); // Frequency map for target string t
+    HashMap<Character, Integer> windowMap = new HashMap<>(); // Frequency map for current window in s
 
     // Populate the targetMap with character frequencies from string t
     for (char ch : t.toCharArray()) {
-        targetMap[ch]++;
+        targetMap.put(ch, targetMap.getOrDefault(ch, 0) + 1);
     }
 
-    int left = 0;                 // Left pointer of the window
-    int right = 0;                // Right pointer of the window
-    int minWindowStart = 0;       // Starting index of the minimum window
-    int minWindowLength = Integer.MAX_VALUE;  // Minimum window length
-    int matchedCount = 0;         // Counter to track matched characters
+    int left = 0;                  // Left pointer of the window
+    int right = 0;                 // Right pointer of the window
+    int minWindowStart = 0;        // Starting index of the minimum window
+    int minWindowLength = Integer.MAX_VALUE; // Minimum window length
+    int matchedCount = 0;          // Counter to track matched characters
 
     // Iterate through the string s using the right pointer
     while (right < s.length()) {
         char rightChar = s.charAt(right);
-        windowMap[rightChar]++;  // Update the frequency of the character in the window map
+        windowMap.put(rightChar, windowMap.getOrDefault(rightChar, 0) + 1); // Update the frequency of the character in the window map
 
         // If the current character is present in targetMap and its frequency in the window map is <= its frequency in targetMap
-        if (targetMap[rightChar] > 0 && windowMap[rightChar] <= targetMap[rightChar]) {
-            matchedCount++;  // Increment matchedCount as a character from t is matched
+        if (targetMap.containsKey(rightChar) && windowMap.get(rightChar) <= targetMap.get(rightChar)) {
+            matchedCount++; // Increment matchedCount as a character from t is matched
         }
 
         // Check if all characters from t have been matched in the current window
@@ -521,17 +521,17 @@ public String minWindow(String s, String t) {
 
             // Shrink the window from the left side
             char leftChar = s.charAt(left);
-            windowMap[leftChar]--;  // Update the frequency of the character in the window map
+            windowMap.put(leftChar, windowMap.get(leftChar) - 1); // Update the frequency of the character in the window map
 
             // If the current character was one of the characters from t, decrement the matchedCount
-            if (targetMap[leftChar] > 0 && windowMap[leftChar] < targetMap[leftChar]) {
+            if (targetMap.containsKey(leftChar) && windowMap.get(leftChar) < targetMap.get(leftChar)) {
                 matchedCount--;
             }
 
-            left++;  // Move the left pointer to shrink the window
+            left++; // Move the left pointer to shrink the window
         }
 
-        right++;  // Move the right pointer to expand the window
+        right++; // Move the right pointer to expand the window
     }
 
     // Check if a valid window was found
