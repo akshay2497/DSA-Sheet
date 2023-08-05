@@ -940,7 +940,8 @@ Solution:
 3. Perform binary search using the `while` loop, which continues as long as `left` is less than `right`.
 4. Calculate the middle index `mid` using `(left + right) / 2`.
 5. Check if the element at the middle index `mid` is greater than the element at the right index `right`. If true, it means that the minimum element is on the right side of `mid`, so we update `left = mid + 1`.
-6. Check if the element at the middle index `mid` is less than the element at the right index `right`. If true, it means that the minimum element is either `mid` or on the left side of `mid`, so we update `right = mid`.
+6. Check if the element at the middle index `mid` is less than the element at the right index `right`. If true, 
+it means that the minimum element is either `mid` or on the left side of `mid`, so we update `right = mid`.
 7. If the element at the middle index `mid` is equal to the element at the right index `right`, it means there are duplicate elements. In this case, we can safely ignore the rightmost element as it will not affect the minimum element, so we update `right--` to exclude the duplicate element.
 8. Repeat steps 4 to 7 until `left` becomes equal to `right`, indicating that we have found the minimum element.
 9. Return the element at the `left` index, which is the minimum element.
@@ -1135,9 +1136,11 @@ public int searchInsert(int[] nums, int target) {
 
 A peak element is an element that is strictly greater than its neighbors.
 
-Given a 0-indexed integer array nums, find a peak element, and return its index. If the array contains multiple peaks, return the index to any of the peaks.
+Given a 0-indexed integer array nums, find a peak element, and return its index. If the array contains multiple peaks, 
+return the index to any of the peaks.
 
-You may imagine that nums[-1] = nums[n] = -∞. In other words, an element is always considered to be strictly greater than a neighbor that is outside the array.
+You may imagine that nums[-1] = nums[n] = -∞. In other words, an element is always considered to be strictly greater 
+than a neighbor that is outside the array.
 
 You must write an algorithm that runs in O(log n) time.
 
@@ -1152,7 +1155,8 @@ Example 2:
 
 Input: nums = [1,2,1,3,5,6,4]
 Output: 5
-Explanation: Your function can return either index number 1 where the peak element is 2, or index number 5 where the peak element is 6.
+Explanation: Your function can return either index number 1 where the peak element is 2, or index number 5 
+where the peak element is 6.
 
 
 Solution:
@@ -1238,10 +1242,13 @@ Input: nums = [], target = 0
 Output: [-1,-1]
 
 Solution:
-The given code aims to find the first and last occurrences of the target element in a sorted array. The algorithm utilizes two binary search loops to find these occurrences.
+The given code aims to find the first and last occurrences of the target element in a sorted array. The algorithm utilizes 
+two binary search loops to find these occurrences.
 
-1. The first binary search loop is used to find the leftmost occurrence of the target. It works in a similar way to standard binary search, but when the target is found, it continues searching on the left side to find the leftmost occurrence.
-2. The second binary search loop is used to find the rightmost occurrence of the target. It also works similarly to standard binary search, but when the target is found, it continues searching on the right side to find the rightmost occurrence.
+1. The first binary search loop is used to find the leftmost occurrence of the target. It works in a similar way to 
+standard binary search, but when the target is found, it continues searching on the left side to find the leftmost occurrence.
+2. The second binary search loop is used to find the rightmost occurrence of the target. It also works similarly to 
+standard binary search, but when the target is found, it continues searching on the right side to find the rightmost occurrence.
 
 Time Complexity (TC):
 The time complexity of this algorithm is O(log N) for each binary search loop, where N is the number of elements in the `nums` array. Since we have two binary search loops, the overall time complexity remains O(log N).
@@ -1311,7 +1318,9 @@ Explanation: [0,-10,5,null,-3,null,9] is also accepted:
 
 
 Approach:
-The given problem requires converting a sorted integer array into a height-balanced binary search tree (BST). A height-balanced BST is a binary tree in which the difference in the heights of the left and right subtrees of every node is at most one.
+The given problem requires converting a sorted integer array into a height-balanced binary search tree (BST). 
+A height-balanced BST is a binary tree in which the difference in the heights of the left and right subtrees of 
+every node is at most one.
 
 To construct a height-balanced BST, we can follow a recursive approach:
 The main thing to notice here is Array is Sorted so the root will be always the middle element of the array
@@ -1322,10 +1331,12 @@ The main thing to notice here is Array is Sorted so the root will be always the 
 4. Return the root node of the constructed BST.
 
 Time Complexity (TC):
-The time complexity of this algorithm is O(N), where N is the number of elements in the `nums` array. This is because each element of the array is visited once to construct the corresponding node in the BST.
+The time complexity of this algorithm is O(N), where N is the number of elements in the `nums` array. 
+This is because each element of the array is visited once to construct the corresponding node in the BST.
 
 Space Complexity (SC):
-The space complexity of this algorithm is O(log N) due to the recursive call stack. In a balanced binary search tree, the maximum depth of the recursion is log N.
+The space complexity of this algorithm is O(log N) due to the recursive call stack. In a balanced binary search tree, 
+the maximum depth of the recursion is log N.
 
 Code:
 
@@ -1403,7 +1414,8 @@ public int search(ArrayReader reader, int target) {
 1. Maximum Average Subarray I - (Maximum Sum Subarray of Size K) (easy) - LeetCode #643
 You are given an integer array nums consisting of n elements, and an integer k.
 
-Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer with a calculation error less than 10-5 will be accepted.
+Find a contiguous subarray whose length is equal to k that has the maximum average value and return this value. Any answer 
+with a calculation error less than 10-5 will be accepted.
 
 Example 1:
 
@@ -1462,20 +1474,1179 @@ The space complexity of this algorithm is O(1) because we use only a constant am
 -----------------------------------------------------
 
 2. Minimum Window Substring (hard) - LeetCode #76
-3. Longest Substring with At Most Two Distinct Characters (medium) - LeetCode #159
+
+Given two strings s and t of lengths m and n respectively, return the minimum window 
+substring
+ of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
+
+The testcases will be generated such that the answer is unique.
+
+ 
+
+Example 1:
+
+Input: s = "ADOBECODEBANC", t = "ABC"
+Output: "BANC"
+Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
+Example 2:
+
+Input: s = "a", t = "a"
+Output: "a"
+Explanation: The entire string s is the minimum window.
+Example 3:
+
+Input: s = "a", t = "aa"
+Output: ""
+Explanation: Both 'a's from t must be included in the window.
+Since the largest window of s only has one 'a', return empty string.
+
+
+Solution:
+
+1. Initialize two pointers, `left` and `right`, to track the window boundaries. Set them both to 0 initially.
+
+2. Create two frequency maps, `targetMap` and `windowMap`, to track the character frequencies of the target string `t` and the current window in string `s`, respectively. Initially, both maps should be empty.
+
+3. Populate the `targetMap` by iterating through the characters of string `t`. For each character, update its frequency in the map.
+
+4. Initialize variables to track the minimum window length (`minWindowLength`), the starting index of the minimum window (`minWindowStart`), and a counter to keep track of the characters in `t` that have been matched in the current window (`matchedCount`). Set the `matchedCount` to 0 initially.
+
+5. Start iterating through the string `s` using the `right` pointer:
+   - For each character encountered, update its frequency in the `windowMap`.
+   - If the character is present in the `targetMap` and its frequency in the `windowMap` is less than or equal to its frequency in the `targetMap`, increment the `matchedCount` by 1.
+
+6. Check if all characters in `t` have been matched in the current window:
+   - If the `matchedCount` is equal to the length of the target string `t`, it means all characters in `t` have been matched. In this case, we have found a valid window.
+   - Update the minimum window length and the starting index of the minimum window if necessary.
+
+7. Shrink the window by moving the `left` pointer:
+   - While the `left` pointer can be moved and the current window still contains all characters from `t`, update the `windowMap` and `matchedCount` accordingly.
+   - Check if the updated window is still valid (contains all characters from `t`).
+   - If the updated window is still valid, update the minimum window length and the starting index of the minimum window if necessary.
+
+8. Repeat steps 5 to 7 until the `right` pointer reaches the end of the string `s`.
+
+9. After the loop, check if a valid window was found. If so, return the substring of `s` that corresponds to the minimum window length, starting from the `minWindowStart` index. Otherwise, return an empty string.
+
+Code:
+
+```java
+public String minWindow(String s, String t) {
+    HashMap<Character, Integer> targetMap = new HashMap<>(); // Frequency map for target string t
+    HashMap<Character, Integer> windowMap = new HashMap<>(); // Frequency map for current window in s
+
+    // Populate the targetMap with character frequencies from string t
+    for (char ch : t.toCharArray()) {
+        targetMap.put(ch, targetMap.getOrDefault(ch, 0) + 1);
+    }
+
+    int left = 0;                  // Left pointer of the window
+    int right = 0;                 // Right pointer of the window
+    int minWindowStart = 0;        // Starting index of the minimum window
+    int minWindowLength = Integer.MAX_VALUE; // Minimum window length
+    int matchedCount = 0;          // Counter to track matched characters
+
+    // Iterate through the string s using the right pointer
+    while (right < s.length()) {
+        char rightChar = s.charAt(right);
+        windowMap.put(rightChar, windowMap.getOrDefault(rightChar, 0) + 1); // Update the frequency of the character in the window map
+
+        // If the current character is present in targetMap and its frequency in the window map is <= its frequency in targetMap
+        if (targetMap.containsKey(rightChar) && windowMap.get(rightChar) <= targetMap.get(rightChar)) {
+            matchedCount++; // Increment matchedCount as a character from t is matched
+        }
+
+        // Check if all characters from t have been matched in the current window
+        while (matchedCount == t.length()) {
+            // Update the minimum window length and starting index if necessary
+            if (right - left + 1 < minWindowLength) {
+                minWindowLength = right - left + 1;
+                minWindowStart = left;
+            }
+
+            // Shrink the window from the left side
+            char leftChar = s.charAt(left);
+            windowMap.put(leftChar, windowMap.get(leftChar) - 1); // Update the frequency of the character in the window map
+
+            // If the current character was one of the characters from t, decrement the matchedCount
+            if (targetMap.containsKey(leftChar) && windowMap.get(leftChar) < targetMap.get(leftChar)) {
+                matchedCount--;
+            }
+
+            left++; // Move the left pointer to shrink the window
+        }
+
+        right++; // Move the right pointer to expand the window
+    }
+
+    // Check if a valid window was found
+    if (minWindowLength != Integer.MAX_VALUE) {
+        return s.substring(minWindowStart, minWindowStart + minWindowLength);
+    } else {
+        return "";
+    }
+}
+```
+
+Time and Space Complexity :
+
+The time complexity of this solution is O(n), where n is the length of the string `s`. The two pointers, `left` and `right`, 
+traverse the string `s` only once. Additionally, the frequency maps and comparisons have constant time complexity since the 
+number of characters is limited (128 ASCII characters). Therefore, the overall time complexity is linear, meeting the complexity requirement of O(n).
+
+-----------------------------------------------------
 4. Fruit Into Baskets (medium) - LeetCode #904
+
+You are visiting a farm that has a single row of fruit trees arranged from left to right. The trees are represented by an integer array fruits where fruits[i] is the type of fruit the ith tree produces.
+
+You want to collect as much fruit as possible. However, the owner has some strict rules that you must follow:
+
+You only have two baskets, and each basket can only hold a single type of fruit. There is no limit on the amount of fruit each basket can hold.
+Starting from any tree of your choice, you must pick exactly one fruit from every tree (including the start tree) while moving to the right. The picked fruits must fit in one of your baskets.
+Once you reach a tree with fruit that cannot fit in your baskets, you must stop.
+Given the integer array fruits, return the maximum number of fruits you can pick.
+
+
+
+Example 1:
+
+Input: fruits = [1,2,1]
+Output: 3
+Explanation: We can pick from all 3 trees.
+Example 2:
+
+Input: fruits = [0,1,2,2]
+Output: 3
+Explanation: We can pick from trees [1,2,2].
+If we had started at the first tree, we would only pick from trees [0,1].
+Example 3:
+
+Input: fruits = [1,2,3,2,2]
+Output: 4
+Explanation: We can pick from trees [2,3,2,2].
+If we had started at the first tree, we would only pick from trees [1,2].
+
+
+
+brute force :
+
+The brute force solution for the Fruit Into Baskets problem involves trying all possible combinations 
+of two fruit types and counting the maximum number of fruits we can pick. Here's the basic outline of the brute force approach:
+
+Initialize a variable maxFruits to store the maximum number of fruits we can pick.
+
+Start a nested loop to iterate over all possible starting points for the two fruit types. The outer loop will 
+consider the starting point of the first fruit type, and the inner loop will consider the starting point of the second fruit type.
+
+For each combination of starting points, iterate through the array and pick fruits until we encounter a third 
+fruit type (different from the two starting types). Count the number of fruits we picked during this iteration.
+
+Update the maxFruits variable with the maximum number of fruits found during the iterations.
+
+Continue the nested loops until all possible combinations are tried.
+
+Finally, return the maxFruits value as the result.
+
+The time complexity of this brute force solution is O(n^3), where n is the length of the input array. 
+This is because we are trying all possible combinations of two fruit types and iterating through the 
+array for each combination. The overall solution is not efficient for large inputs and should be avoided in practice.
+class Solution {
+    public int totalFruit(int[] tree) {
+        int n = tree.length;
+        int maxFruits = 0;
+
+        // Iterate through all possible starting points for the first fruit type
+        for (int i = 0; i < n; i++) {
+            // Iterate through all possible starting points for the second fruit type
+            for (int j = i + 1; j < n; j++) {
+                int firstFruit = tree[i];
+                int secondFruit = tree[j];
+                int count = 0;
+
+                // Iterate through the array and count the number of fruits we can pick
+                for (int k = 0; k < n; k++) {
+                    if (tree[k] == firstFruit || tree[k] == secondFruit) {
+                        count++;
+                    } else {
+                        break; // Encounter a third fruit type, stop counting
+                    }
+                }
+
+                // Update the maximum number of fruits
+                maxFruits = Math.max(maxFruits, count);
+            }
+        }
+
+        return maxFruits;
+    }
+}
+
+optimized :
+
+Initialize two pointers, left and right, to mark the start and end of the current window, respectively. Also, 
+initialize a maxFruits variable to store the maximum number of fruits we can pick.
+
+Start iterating through the array with the right pointer. For each element tree[right], do the following:
+
+a. Add the current fruit type to a frequency map. The frequency map will keep track of the count of each fruit 
+type in the current window.
+
+b. If the size of the frequency map becomes larger than 2 (i.e., there are more than two types of fruits in the window), 
+we need to shrink the window from the left side until there are at most two types of fruits.
+
+c. Update the maxFruits variable with the maximum number of fruits found so far (i.e., the length of the current window).
+
+Continue the iteration until the right pointer reaches the end of the array.
+
+Finally, return the maxFruits value as the result.
+
+The sliding window approach helps us avoid unnecessary iterations and significantly improves the efficiency of the solution. 
+The frequency map allows us to quickly determine the number of fruit types in the current window and decide when to 
+shrink or expand the window efficiently.
+
+Here's the optimized solution in Java:
+
+
+class Solution {
+    public int totalFruit(int[] tree) {
+        int n = tree.length;
+        int maxFruits = 0;
+        int left = 0;
+        HashMap<Integer, Integer> fruitFrequency = new HashMap<>();
+
+        for (int right = 0; right < n; right++) {
+            // Add the current fruit type to the frequency map
+            fruitFrequency.put(tree[right], fruitFrequency.getOrDefault(tree[right], 0) + 1);
+
+            // Shrink the window from the left side if there are more than 2 fruit types
+            while (fruitFrequency.size() > 2) {
+                fruitFrequency.put(tree[left], fruitFrequency.get(tree[left]) - 1);
+                if (fruitFrequency.get(tree[left]) == 0) {
+                    fruitFrequency.remove(tree[left]);
+                }
+                left++;
+            }
+
+            // Update the maximum number of fruits
+            maxFruits = Math.max(maxFruits, right - left + 1);
+        }
+
+        return maxFruits;
+    }
+}
+
+The time complexity of the optimized solution is O(n), where n is the length of the input array. This is because 
+we iterate through the array once, and each element is processed by both the left and right pointers exactly once. 
+The overall solution is much more efficient than the brute force approach and is suitable for large inputs.
+
+-------------------------------------------------------
 5. Longest Repeating Character Replacement (medium) - LeetCode #424
+
+You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times.
+
+Return the length of the longest substring containing the same letter you can get after performing the above operations.
+
+ 
+
+Example 1:
+
+Input: s = "ABAB", k = 2
+Output: 4
+Explanation: Replace the two 'A's with two 'B's or vice versa.
+Example 2:
+
+Input: s = "AABABBA", k = 1
+Output: 4
+Explanation: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
+The substring "BBBB" has the longest repeating letters, which is 4.
+There may exists other ways to achive this answer too.
+
+
+Brute Force Approach:
+
+In the brute force approach, we consider all possible substrings and calculate the maximum length of the substring 
+that can be obtained by replacing characters to make all characters the same. We try all possible replacement counts 
+(from 0 to the length of the substring) for each character in the substring.
+
+Here's the basic outline of the brute force approach:
+
+Initialize a variable maxLength to store the maximum length of the substring.
+
+Start two nested loops to consider all possible substrings. The outer loop will represent the starting index of the 
+substring, and the inner loop will represent the ending index of the substring.
+
+For each substring, create a frequency map to count the occurrences of each character.
+
+Start another loop to try all possible replacement counts (from 0 to the length of the substring) for each character 
+in the substring.
+
+Update the maxLength variable with the maximum length of the substring obtained after replacements.
+
+Continue the nested loops until all possible substrings and replacement counts are considered.
+
+Finally, return the maxLength value as the result.
+
+The time complexity of this brute force approach is O(n^3), where n is the length of the input string. 
+This is because we consider all possible substrings, and for each substring, we may need to try all possible 
+replacement counts for each character in the substring.
+
+class Solution {
+    public int characterReplacement(String s, int k) {
+        int n = s.length();
+        int maxLength = 0;
+
+        // Iterate through all possible substrings
+        for (int left = 0; left < n; left++) {
+            for (int right = left; right < n; right++) {
+                String substring = s.substring(left, right + 1);
+                int maxCount = getMaxCharacterCount(substring);
+
+                // Calculate the number of characters that need replacement
+                int replacementsNeeded = substring.length() - maxCount;
+
+                // Check if the replacements needed are less than or equal to k
+                if (replacementsNeeded <= k) {
+                    // Update the maximum length of the substring found so far
+                    maxLength = Math.max(maxLength, substring.length());
+                }
+            }
+        }
+
+        return maxLength;
+    }
+
+    private int getMaxCharacterCount(String s) {
+        int maxCount = 0;
+        HashMap<Character, Integer> charFrequency = new HashMap<>();
+
+        for (char ch : s.toCharArray()) {
+            charFrequency.put(ch, charFrequency.getOrDefault(ch, 0) + 1);
+            maxCount = Math.max(maxCount, charFrequency.get(ch));
+        }
+
+        return maxCount;
+    }
+}
+
+
+Optimized Approach:
+
+The optimized solution for the Longest Repeating Character Replacement problem uses the sliding window 
+approach to efficiently find the maximum length of the substring with at most k replacements. 
+
+Here's how the optimized solution works:
+
+Initialize two pointers, left and right, to mark the start and end of the current window, respectively.
+
+Initialize a maxCount variable to store the maximum count of any character in the current window.
+
+Start iterating through the string with the right pointer. For each character s[right], do the following:
+
+a. Increment the count of the current character in the frequency map.
+
+b. Update the maxCount with the maximum frequency of any character in the frequency map.
+
+c. If the size of the current window (i.e., the length of the substring from left to right) minus maxCount is greater 
+than k, then it means we have more than k characters that need replacement. In this case, we need to shrink the window 
+from the left side.
+
+d. Update the maximum length of the substring found so far (i.e., the length of the current window).
+
+Continue the iteration until the right pointer reaches the end of the string.
+
+Finally, return the maximum length of the substring found as the result.
+
+The sliding window approach helps us avoid unnecessary iterations and significantly improves the efficiency of 
+the solution. The frequency map allows us to quickly determine the maximum count of any character in the current 
+window and decide when to shrink or expand the window efficiently.
+
+class Solution {
+    public int characterReplacement(String s, int k) {
+        int n = s.length();
+        int maxLength = 0;
+        int maxCount = 0;
+        int left = 0;
+        HashMap<Character, Integer> charFrequency = new HashMap<>();
+
+        for (int right = 0; right < n; right++) {
+            char rightChar = s.charAt(right);
+            charFrequency.put(rightChar, charFrequency.getOrDefault(rightChar, 0) + 1);
+            maxCount = Math.max(maxCount, charFrequency.get(rightChar));
+
+            // If the number of characters that need replacement is greater than k, shrink the window
+            while (right - left + 1 - maxCount > k) {
+                char leftChar = s.charAt(left);
+                charFrequency.put(leftChar, charFrequency.get(leftChar) - 1);
+                left++;
+                // Update maxCount after removing a character from the window
+                maxCount = charFrequency.values().stream().max(Integer::compare).orElse(0);
+            }
+
+            // Update the maximum length of the substring found so far
+            maxLength = Math.max(maxLength, right - left + 1);
+        }
+
+        return maxLength;
+    }
+}
+
+
+-------------------------------------------------------
 6. Permutation in String (medium) - LeetCode #567
+
+
+Brute force
+In the brute force approach, we generate all possible permutations of the first string s1 and check if any of those permutations is a substring of the second string s2. We can use backtracking to generate all permutations of s1 and then check if each permutation is a substring of s2.
+
+Here's the basic outline of the brute force approach:
+
+Generate all permutations of the first string s1.
+
+For each permutation of s1, check if it is a substring of s2. If we find a match, return true.
+
+If we don't find any match after checking all permutations, return false.
+
+The time complexity of this brute force approach is O((n+m)!), where n is the length of s1, and m is the length of s2. This is because we generate all permutations of s1, which takes (n!) time, and then for each permutation, we check if it is a substring of s2, which takes O(m) time.
+
+
+class Solution {
+    public boolean checkInclusion(String s1, String s2) {
+        int n = s1.length();
+        int m = s2.length();
+        if (n > m) {
+            return false;
+        }
+
+        // Generate all permutations of s1
+        List<String> permutations = new ArrayList<>();
+        generatePermutations(s1.toCharArray(), 0, n - 1, permutations);
+
+        // Check if any permutation is a substring of s2
+        for (String permutation : permutations) {
+            if (s2.contains(permutation)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void generatePermutations(char[] chars, int left, int right, List<String> permutations) {
+        if (left == right) {
+            permutations.add(new String(chars));
+        } else {
+            for (int i = left; i <= right; i++) {
+                swap(chars, left, i);
+                generatePermutations(chars, left + 1, right, permutations);
+                swap(chars, left, i); // Backtrack
+            }
+        }
+    }
+
+    private void swap(char[] chars, int i, int j) {
+        char temp = chars[i];
+        chars[i] = chars[j];
+        chars[j] = temp;
+    }
+}
+
+
+-------------------------------------------------------
 7. Longest Substring Without Repeating Characters (medium) - LeetCode #3
+
+Given a string s, find the length of the longest substring without repeating characters.
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+Example 3:
+
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+
+In the brute force approach, we consider all possible substrings of the input string s and check if each substring has all unique characters. We keep track of the maximum length of such substrings and return that as the result.
+
+Algorithm:
+
+Initialize a variable maxLength to store the maximum length of the substring without repeating characters. Set it to 0 initially.
+
+Iterate through all possible starting positions of the substring using an outer loop.
+
+For each starting position, use an inner loop to iterate through all possible ending positions of the substring.
+
+Within the inner loop, check if the current substring from the starting to ending positions has all unique characters. If it does, update maxLength to the maximum of its current value and the length of the current substring.
+
+Continue the inner loop until all possible ending positions have been considered for the given starting position.
+
+Continue the outer loop until all possible starting positions have been considered.
+
+After both loops, the maxLength variable will hold the length of the longest substring without repeating characters.
+
+Return maxLength as the result.
+
+Complexity Analysis:
+
+The time complexity of the brute force approach is O(n^3) because we have two nested loops for iterating through all possible substrings, and each loop takes O(n) time.
+
+The space complexity is O(1) as we are not using any additional data structures.
+
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        int maxLength = 0;
+
+        for (int start = 0; start < n; start++) {
+            for (int end = start + 1; end <= n; end++) {
+                if (isUnique(s, start, end)) {
+                    maxLength = Math.max(maxLength, end - start);
+                }
+            }
+        }
+
+        return maxLength;
+    }
+
+    private boolean isUnique(String s, int start, int end) {
+        Set<Character> charSet = new HashSet<>();
+        for (int i = start; i < end; i++) {
+            char ch = s.charAt(i);
+            if (charSet.contains(ch)) {
+                return false;
+            }
+            charSet.add(ch);
+        }
+        return true;
+    }
+}
+
+
+Optimized : 
+Algorithm:
+
+Initialize a HashSet called set to keep track of characters in the current window.
+
+Initialize three variables i, j, and max to represent the current window's start position, end position, and the maximum length of the substring without repeating characters. Set i = j = max = 0 initially.
+
+Start iterating through the string s using the i pointer:
+
+Check if the character at the i pointer is not already present in the set.
+
+If it is not present, it means adding this character to the current window will not result in any repeating characters. So, we can expand the window by moving the i pointer one step to the right and add the character to the set.
+
+Update the max variable with the maximum of its current value and the size of the set. This represents the length of the current substring without repeating characters.
+
+Move the i pointer one step to the right.
+
+If the character at the i pointer is already present in the set, it means we have encountered a repeating character. In this case, we need to shrink the window from the left side to eliminate the repeating character.
+
+Remove the character at the j pointer from the set.
+
+Move the j pointer one step to the right.
+
+Continue the iteration until the i pointer reaches the end of the string s.
+
+After the loop, the max variable will hold the length of the longest substring without repeating characters.
+
+Return max as the result.
+
+Explanation:
+
+The given solution uses a sliding window approach to efficiently find the length of the longest substring without repeating characters. The HashSet called set is used to maintain the characters in the current window. The i pointer moves to expand the window, and the j pointer moves to shrink the window when a repeating character is encountered.
+
+As we iterate through the string s, the set keeps track of the unique characters in the current window. When we encounter a repeating character, we remove characters from the set starting from the left side of the window (pointed by j) until the repeating character is no longer present. This process ensures that we have a new window with no repeating characters.
+
+While updating the window, we keep track of the max variable by calculating the length of the current window (which is i - j) and updating max if needed. The max variable will eventually hold the length of the longest substring without repeating characters.
+
+Complexity Analysis:
+
+The time complexity of the given solution is O(n), where n is the length of the input string s. This is because we traverse the string once from left to right.
+
+The space complexity is O(k), where k is the size of the character set (in this case, the number of unique characters in the input string). Since the character set is limited to ASCII characters (256 characters), the space complexity is considered constant.
+
+public int lengthOfLongestSubstring(String s) {
+    HashSet<Character> set = new HashSet<>();
+    int i=0, j=0, max=0;
+    while(i<s.length())
+    {
+        if(!set.contains(s.charAt(i)))
+        {
+           set.add(s.charAt(i));
+           max= Math.max(max, set.size());
+           i++;
+        }
+        else
+        {
+           set.remove(s.charAt(j));
+           j++;
+        }
+    }
+    return max;
+}
+
+
+-------------------------------------------------------
 8. Find All Anagrams in a String (medium) - LeetCode #438
+
+Given two strings s and p, return an array of all the start indices of p's anagrams in s. You may return the answer in any order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+ 
+
+Example 1:
+
+Input: s = "cbaebabacd", p = "abc"
+Output: [0,6]
+Explanation:
+The substring with start index = 0 is "cba", which is an anagram of "abc".
+The substring with start index = 6 is "bac", which is an anagram of "abc".
+Example 2:
+
+Input: s = "abab", p = "ab"
+Output: [0,1,2]
+Explanation:
+The substring with start index = 0 is "ab", which is an anagram of "ab".
+The substring with start index = 1 is "ba", which is an anagram of "ab".
+The substring with start index = 2 is "ab", which is an anagram of "ab".
+
+Brute force : 
+
+In the brute force approach, we consider all possible substrings of the string s with the same length as the string p, and for each substring, we check if it is an anagram of p. We keep track of the start indices of all such anagrams and return them as the result.
+
+Algorithm:
+
+Initialize an empty list called anagramIndices to store the start indices of the anagrams of p in s.
+
+Calculate the lengths of the strings s and p and store them in variables n and m, respectively.
+
+Iterate through all possible starting positions of the substring in s using an outer loop with the pointer i ranging from 0 to n - m.
+
+For each starting position i, extract the substring of length m starting from i in s. This substring represents the current window.
+
+Check if the current window (substring) is an anagram of p by comparing the character frequencies of both strings.
+
+To do this, initialize two arrays charFrequencyS and charFrequencyP of size 26 (to represent each lowercase English alphabet).
+
+For the current window in s, increment the count of each character in charFrequencyS.
+
+For the string p, increment the count of each character in charFrequencyP.
+
+Check if charFrequencyS is equal to charFrequencyP. If they are equal, it means the current window is an anagram of p, so add the current start index i to the anagramIndices list.
+
+After the loop, return the anagramIndices list as the result.
+
+Complexity Analysis:
+
+The time complexity of the brute force approach is O((n-m) * m), where n is the length of s and m is the length of p. The outer loop runs (n-m) times, and for each iteration, we compare m characters of both strings.
+
+The space complexity is O(1) since we are using fixed-size arrays to store character frequencies.
+
+Brute Force Implementation:
+import java.util.ArrayList;
+import java.util.List;
+
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> anagramIndices = new ArrayList<>();
+        int n = s.length();
+        int m = p.length();
+
+        for (int i = 0; i <= n - m; i++) {
+            if (isAnagram(s.substring(i, i + m), p)) {
+                anagramIndices.add(i);
+            }
+        }
+
+        return anagramIndices;
+    }
+
+    private boolean isAnagram(String s, String p) {
+        int[] charFrequencyS = new int[26];
+        int[] charFrequencyP = new int[26];
+
+        for (int i = 0; i < s.length(); i++) {
+            charFrequencyS[s.charAt(i) - 'a']++;
+            charFrequencyP[p.charAt(i) - 'a']++;
+        }
+
+        for (int i = 0; i < 26; i++) {
+            if (charFrequencyS[i] != charFrequencyP[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
+
+
+
+
+Optimized:
+Sliding Window with Frequency Map
+
+Algorithm:
+
+Initialize an empty list called anagramIndices to store the start indices of the anagrams of p in s.
+
+Calculate the lengths of the strings s and p and store them in variables n and m, respectively.
+
+Create two integer arrays charFrequencyS and charFrequencyP of size 26 (to represent each lowercase English alphabet) to keep track of character frequencies in s and p, respectively.
+
+Populate charFrequencyP with the character frequencies of string p.
+
+Start iterating through the string s using the right pointer:
+
+Increment the frequency of the character at the right pointer in charFrequencyS.
+
+If the current window (substring) size becomes greater than m, we need to shrink the window from the left side. Decrement the frequency of the character at the left pointer in charFrequencyS and move the left pointer one step to the right.
+
+Check if the charFrequencyS is equal to charFrequencyP. If they are equal, it means the current window is an anagram of p, so add the current start index left to the anagramIndices list.
+
+Move the right pointer one step to the right to expand the window.
+
+After the loop, return the anagramIndices list as the result.
+
+Complexity Analysis:
+
+The time complexity of the optimized approach is O(n), where n is the length of the input string s. This is because we traverse the string once from left to right, and each character is processed exactly twice (once by the left pointer and once by the right pointer).
+
+The space complexity is O(1) since we are using fixed-size arrays to store character frequencies.
+
+Optimized Implementation:
+
+
+class Solution {
+    public List<Integer> findAnagrams(String s, String p) {
+        List<Integer> anagramIndices = new ArrayList<>();
+        int n = s.length();
+        int m = p.length();
+
+        int[] charFrequencyS = new int[26];
+        int[] charFrequencyP = new int[26];
+
+        // Populate charFrequencyP with character frequencies of string p
+        for (char ch : p.toCharArray()) {
+            charFrequencyP[ch - 'a']++;
+        }
+
+        int left = 0;
+        for (int right = 0; right < n; right++) {
+            char rightChar = s.charAt(right);
+            charFrequencyS[rightChar - 'a']++;
+
+            // Shrink the window from the left side if its size becomes greater than m
+            if (right - left + 1 > m) {
+                char leftChar = s.charAt(left);
+                charFrequencyS[leftChar - 'a']--;
+                left++;
+            }
+
+            // Check if the current window is an anagram
+            if (isAnagram(charFrequencyS, charFrequencyP)) {
+                anagramIndices.add(left);
+            }
+        }
+
+        return anagramIndices;
+    }
+
+    private boolean isAnagram(int[] charFrequencyS, int[] charFrequencyP) {
+        for (int i = 0; i < 26; i++) {
+            if (charFrequencyS[i] != charFrequencyP[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+-------------------------------------------------------
 9. Subarrays with K Different Integers (hard) - LeetCode #992
+
+-------------------------------------------------------
 10. Minimum Size Subarray Sum (medium) - LeetCode #209
+
+Given an array of positive integers nums and a positive integer target, return the minimal length of a 
+subarray whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.
+
+Example 1:
+
+Input: target = 7, nums = [2,3,1,2,4,3]
+Output: 2
+Explanation: The subarray [4,3] has the minimal length under the problem constraint.
+Example 2:
+
+Input: target = 4, nums = [1,4,4]
+Output: 1
+Example 3:
+
+Input: target = 11, nums = [1,1,1,1,1,1,1,1]
+Output: 0
+
+Algorithm:
+
+The given solution uses a sliding window approach to find the minimum size subarray whose sum is greater than or equal to the given target. The idea is to keep a window whose sum is greater than or equal to the target and continuously shrink the window from the left side until the sum becomes less than the target. During this process, we keep track of the minimum window size encountered so far.
+
+Explanation:
+
+Initialize two pointers start and end to represent the window. Set start and end to 0 initially.
+
+Initialize a variable sum to keep track of the sum of elements in the current window. Set sum to 0 initially.
+
+Initialize a variable min to store the minimum size of the subarray whose sum is greater than or equal to the target. Set min to Integer.MAX_VALUE initially.
+
+Iterate through the array nums using the start pointer:
+
+Add the value at the start pointer to the current sum.
+
+Check if the sum is greater than or equal to the target.
+
+If sum is greater than or equal to the target, it means the current window's sum satisfies the condition. So, we update the min variable with the minimum of its current value and the window size (start - end + 1).
+
+Shrink the window from the left side by moving the end pointer one step to the right and subtracting the value at the end pointer from the current sum.
+
+Continue the inner loop until the sum becomes less than the target.
+
+After the loop, return the min variable as the result. If min is still Integer.MAX_VALUE, it means no subarray satisfies the condition, so return 0.
+
+Time Complexity:
+
+The time complexity of the given solution is O(n), where n is the length of the input array nums. This is because both start and end pointers traverse the array from left to right exactly once.
+
+Space Complexity:
+
+The space complexity is O(1) because the solution uses a constant amount of extra space to store the variables start, end, sum, and min.
+
+Implementation:
+
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int start = 0, end = 0;
+        int sum = 0;
+        int min = Integer.MAX_VALUE;
+        
+        for (start = 0; start < nums.length; start++) {
+            sum += nums[start];
+            while (sum >= target) {
+                min = Math.min(min, (start - end + 1));
+                sum -= nums[end++];
+            }
+        }
+        
+        return min == Integer.MAX_VALUE ? 0 : min;
+    }
+}
+
+-------------------------------------------------------
 11. Shortest Subarray with Sum at Least K (hard) - LeetCode #862
+
+-------------------------------------------------------
 12. Replace the Substring for Balanced String (medium) - LeetCode #1234
-13. Find K-Length Substrings With No Repeated Characters (medium) - LeetCode #1100
+
+You are given a string s of length n containing only four kinds of characters: 'Q', 'W', 'E', and 'R'.
+
+A string is said to be balanced if each of its characters appears n / 4 times where n is the length of the string.
+
+Return the minimum length of the substring that can be replaced with any other string of the same length to make s balanced. 
+If s is already balanced, return 0.
+
+Example 1:
+
+Input: s = "QWER"
+Output: 0
+Explanation: s is already balanced.
+Example 2:
+
+Input: s = "QQWE"
+Output: 1
+Explanation: We need to replace a 'Q' to 'R', so that "RQWE" (or "QRWE") is balanced.
+Example 3:
+
+Input: s = "QQQW"
+Output: 2
+Explanation: We can replace the first "QQ" to "ER". 
+
+
+Approach :
+Calculate the expected count count of each character in a balanced string. Since there are four kinds of characters ('Q', 'W', 'E', and 'R'), the expected count for each character is n / 4, where n is the length of the string s.
+
+Create a HashMap charFrequency to store the character frequencies in the string. Loop through each character in the string s and populate the HashMap, incrementing the count for each character.
+
+Initialize two pointers, left and right, to represent the window. These pointers will help us track the substring that needs to be replaced.
+
+Start traversing the string from left to right using the right pointer. For each character at the right pointer, decrement its count in the charFrequency HashMap.
+
+Move the right pointer to the right to expand the window.
+
+Enter a loop to shrink the window from the left side. This loop runs as long as the window is balanced (i.e., the character frequencies are within the expected counts).
+
+Inside the loop, calculate the length of the current window (right - left) and update minLength with the minimum of its current value and the length of the current window.
+
+Increment the count of the character at the left pointer in the charFrequency HashMap, effectively removing it from the window.
+
+Move the left pointer to the right to shrink the window further.
+
+Return the minLength as the result.
+
+The isBalanced helper function checks if the current window is balanced. It iterates through the values (character frequencies) of the charFrequency HashMap and returns false if any character's count exceeds the expected count.
+
+Code :
+
+class Solution {
+    public int balancedString(String s) {
+        int n = s.length();
+        int count = n / 4;
+        int minLength = n;
+        
+        // Calculate the expected count of each character in a balanced string
+        HashMap<Character, Integer> charFrequency = new HashMap<>();
+        for (char ch : s.toCharArray()) {
+            charFrequency.put(ch, charFrequency.getOrDefault(ch, 0) + 1);
+        }
+        
+        // Initialize pointers to represent the window
+        int left = 0;
+        int right = 0;
+        
+        // Traverse the string to find the minimum length of the substring to replace
+        while (right < n) {
+            char rightChar = s.charAt(right);
+            charFrequency.put(rightChar, charFrequency.get(rightChar) - 1);
+            right++;
+            
+            // Shrink the window from the left side if it is balanced
+            while (left < n && isBalanced(charFrequency, count)) {
+                minLength = Math.min(minLength, right - left);
+                char leftChar = s.charAt(left);
+                charFrequency.put(leftChar, charFrequency.get(leftChar) + 1);
+                left++;
+            }
+        }
+        
+        return minLength;
+    }
+    
+    // Helper function to check if the current window is balanced
+    private boolean isBalanced(HashMap<Character, Integer> charFrequency, int count) {
+        for (int freq : charFrequency.values()) {
+            if (freq > count) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+TC and SC :
+TC = O(N) and SC = O(1)
+
+-------------------------------------------------------
 14. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit (medium) - LeetCode #1438
+
+
+Given an array of integers nums and an integer limit, return the size of the longest non-empty subarray such that the absolute difference between any two elements of this subarray is less than or equal to limit.
+
+ 
+
+Example 1:
+
+Input: nums = [8,2,4,7], limit = 4
+Output: 2 
+Explanation: All subarrays are: 
+[8] with maximum absolute diff |8-8| = 0 <= 4.
+[8,2] with maximum absolute diff |8-2| = 6 > 4. 
+[8,2,4] with maximum absolute diff |8-2| = 6 > 4.
+[8,2,4,7] with maximum absolute diff |8-2| = 6 > 4.
+[2] with maximum absolute diff |2-2| = 0 <= 4.
+[2,4] with maximum absolute diff |2-4| = 2 <= 4.
+[2,4,7] with maximum absolute diff |2-7| = 5 > 4.
+[4] with maximum absolute diff |4-4| = 0 <= 4.
+[4,7] with maximum absolute diff |4-7| = 3 <= 4.
+[7] with maximum absolute diff |7-7| = 0 <= 4. 
+Therefore, the size of the longest subarray is 2.
+Example 2:
+
+Input: nums = [10,1,2,4,7,2], limit = 5
+Output: 4 
+Explanation: The subarray [2,4,7,2] is the longest since the maximum absolute diff is |2-7| = 5 <= 5.
+Example 3:
+
+Input: nums = [4,2,2,2,4,4,2,2], limit = 0
+Output: 3
+
+
+Explanation:
+
+We use a TreeMap freqMap to keep track of the frequencies of elements in the current window. The TreeMap is sorted based on the elements' natural order, allowing us to efficiently access the minimum and maximum elements within the window.
+
+The left and right pointers are used to represent the window boundaries, just like in the previous solutions.
+
+We traverse the array from left to right using the right pointer and perform the following steps:
+
+For each element at the right pointer, add it to the freqMap and update its frequency count.
+
+Calculate the absolute difference between the maximum and minimum elements in the current window (freqMap.lastKey() - freqMap.firstKey()).
+
+While the absolute difference is greater than the limit, it means the current window is invalid, and we need to adjust the left pointer and update the frequency map.
+
+We decrement the frequency count of the element at the left pointer and remove it from the freqMap if its frequency becomes 0. We increment the left pointer until the absolute difference becomes less than or equal to the limit.
+
+After adjusting the window, we update the maxWindowSize with the maximum of its current value and the size of the current window (right - left + 1).
+
+After the loop, we return the maxWindowSize as the result.
+
+Time Complexity:
+The time complexity of this approach is O(n * log(n)), where n is the size of the input array nums. Both the left and right pointers traverse the array exactly once. For each right pointer, we perform insertion and deletion operations on the TreeMap, which take O(log(n)) time. In the worst case, the TreeMap can have n distinct elements, resulting in an overall time complexity of O(n * log(n)).
+
+Space Complexity:
+The space complexity is O(n), where n is the size of the input array nums. In the worst case, the TreeMap can have n distinct elements.
+
+
+Code:
+import java.util.TreeMap;
+
+class Solution {
+    public int longestSubarray(int[] nums, int limit) {
+        TreeMap<Integer, Integer> freqMap = new TreeMap<>();
+        int left = 0;
+        int maxWindowSize = 0;
+
+        for (int right = 0; right < nums.length; right++) {
+            freqMap.put(nums[right], freqMap.getOrDefault(nums[right], 0) + 1);
+
+            // While the absolute difference between the minimum and maximum elements in the current window
+            // is greater than the limit, adjust the left pointer and update the frequency map.
+            while (freqMap.lastKey() - freqMap.firstKey() > limit) {
+                freqMap.put(nums[left], freqMap.get(nums[left]) - 1);
+                if (freqMap.get(nums[left]) == 0) {
+                    freqMap.remove(nums[left]);
+                }
+                left++;
+            }
+
+            // Update the maxWindowSize
+            maxWindowSize = Math.max(maxWindowSize, right - left + 1);
+        }
+
+        return maxWindowSize;
+    }
+}
+
+
+-------------------------------------------------------
 15. Max Consecutive Ones III (medium) - LeetCode #1004
 
+Given a binary array nums and an integer k, return the maximum number of consecutive 1's in the array if you can flip at most k 0's.
+
+Example 1:
+
+Input: nums = [1,1,1,0,0,0,1,1,1,1,0], k = 2
+Output: 6
+Explanation: [1,1,1,0,0,1,1,1,1,1,1]
+Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
+Example 2:
+
+Input: nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1], k = 3
+Output: 10
+Explanation: [0,0,1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1,1]
+Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
+
+BRUTE FORCE:
+
+Initialize a variable maxConsecutiveOnes to keep track of the maximum length of consecutive 1's found so far.
+Use a nested loop to consider all possible subarrays with at most k flips.
+For each subarray, maintain two variables flipsLeft and consecutiveOnes. flipsLeft represents the number of flips available, and consecutiveOnes counts the consecutive 1's in the subarray.
+If the current element is 1, increment consecutiveOnes.
+If the current element is 0 and there are flips available (flipsLeft > 0), we can consider flipping it to 1. Increment consecutiveOnes and decrement flipsLeft.
+If the current element is 0, and no more flips are available (flipsLeft == 0), we cannot consider flipping it, so we break the inner loop.
+Update maxConsecutiveOnes with the maximum of its current value and consecutiveOnes.
+After both loops, return the maxConsecutiveOnes as the result.
+Time Complexity:
+The time complexity of the brute force approach is O(n^2), where n is the length of the input array nums. The nested loops consider all possible subarrays, leading to a quadratic time complexity.
+
+Space Complexity:
+The space complexity is O(1) since we are using only a few variables to keep track of the state, and we are not using any additional data structures with a size dependent on the input.
+
+class Solution {
+    public int longestOnes(int[] nums, int k) {
+        int maxConsecutiveOnes = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            int flipsLeft = k;
+            int consecutiveOnes = 0;
+
+            for (int j = i; j < nums.length; j++) {
+                if (nums[j] == 1) {
+                    consecutiveOnes++;
+                } else {
+                    if (flipsLeft > 0) {
+                        consecutiveOnes++;
+                        flipsLeft--;
+                    } else {
+                        break;
+                    }
+                }
+
+                maxConsecutiveOnes = Math.max(maxConsecutiveOnes, consecutiveOnes);
+            }
+        }
+
+        return maxConsecutiveOnes;
+    }
+}
+
+
+OPTIMIZED SLIDING WINDOW:
+Algorithm:
+
+Initialize left and right pointers to represent the window boundaries.
+Initialize a variable maxConsecutiveOnes to keep track of the maximum length of consecutive 1's found so far.
+Initialize a variable flipsLeft to represent the number of flips available.
+Traverse the array using the right pointer.
+If the current element is 0, decrement flipsLeft.
+While flipsLeft becomes negative (i.e., the number of flips used exceeds the allowed k flips), we need to move the left pointer to shrink the window. If the element at the left pointer is 0, increment flipsLeft to free up a flip. Move the left pointer to the right to shrink the window.
+Update maxConsecutiveOnes with the maximum of its current value and the size of the current window (right - left + 1).
+After the loop, return the maxConsecutiveOnes as the result.
+Time Complexity:
+The time complexity of the optimized approach is O(n), where n is the length of the input array nums. Both the left and right pointers traverse the array exactly once. The while loop inside the for loop performs constant-time operations, and the overall time complexity is linear.
+
+Space Complexity:
+The space complexity is O(1) since we are using only a few variables to keep track of the state, and we are not using any additional data structures with a size dependent on the input.
+
+class Solution {
+    public int longestOnes(int[] nums, int k) {
+        int left = 0;
+        int maxConsecutiveOnes = 0;
+        int flipsLeft = k;
+
+        for (int right = 0; right < nums.length; right++) {
+            if (nums[right] == 0) {
+                flipsLeft--;
+            }
+
+            while (flipsLeft < 0) {
+                if (nums[left] == 0) {
+                    flipsLeft++;
+                }
+                left++;
+            }
+
+            maxConsecutiveOnes = Math.max(maxConsecutiveOnes, right - left + 1);
+        }
+
+        return maxConsecutiveOnes;
+    }
+}
 
 -------------------------------------------------------------
 -------------------------------------------------------------
