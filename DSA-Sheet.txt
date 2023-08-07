@@ -5139,65 +5139,642 @@ class Solution {
 --------------------------------------------------------------
 #Array
 
-1. **Two Sum**
-   - LeetCode #1
-
 2. **Best Time to Buy and Sell Stock**
    - LeetCode #121
 
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+
+Example 1:
+
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+Example 2:
+
+Input: prices = [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transactions are done and the max profit = 0.
+
+Approach:
+1. We initialize two variables: `minAmountToBuy` and `maxProfit`. The `minAmountToBuy` variable is set to `Integer.MAX_VALUE`, 
+which represents the maximum possible value in Java. This variable will keep track of the minimum stock price encountered so far. 
+The `maxProfit` variable is initialized to 0, and it will store the maximum profit that can be obtained.
+2. We iterate through the array of stock prices using a loop. For each price, we compare it with the `minAmountToBuy`. If the 
+current price is less than `minAmountToBuy`, it means this is a potential buying point because we want to buy at the lowest 
+possible price. So, we update the `minAmountToBuy` to the current price.
+3. Next, we calculate the profit that can be obtained if we sell the stock at the current price (`prices[i] - minAmountToBuy`). We 
+then compare this profit with the `maxProfit` and update `maxProfit` to the maximum of the two values. This way, we keep track of the 
+maximum profit obtained so far.
+4. Finally, after iterating through all the stock prices, we have the maximum profit stored in the `maxProfit` variable. We return 
+this value as the result.
+
+Time Complexity (TC):
+The given algorithm uses a single loop to iterate through the array of stock prices. Hence, the time complexity is O(n), where n 
+is the number of stock prices in the input array.
+
+Space Complexity (SC):
+The algorithm uses only a constant amount of extra space to store the `minAmountToBuy` and `maxProfit` variables. Therefore, 
+the space complexity is O(1), which is constant space.
+
+
+Code:
+class Solution {
+    public int maxProfit(int[] prices) {
+        int minAmountToBuy = Integer.MAX_VALUE;
+        int maxProfit = 0;
+        for(int i = 0; i < prices.length; i++){
+            if(prices[i] < minAmountToBuy){
+                minAmountToBuy = prices[i];
+            }
+            maxProfit = Math.max(maxProfit, prices[i] - minAmountToBuy);
+        }
+        return maxProfit;
+    }
+}
+
+--------------------------------------------------------------
 3. **Contains Duplicate**
    - LeetCode #217
 
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+Example 1:
+
+Input: nums = [1,2,3,1]
+Output: true
+Example 2:
+
+Input: nums = [1,2,3,4]
+Output: false
+Example 3:
+
+Input: nums = [1,1,1,3,3,4,3,2,4,2]
+Output: true
+
+Code:
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (set.contains(nums[i])) {
+                return true;
+            }
+            set.add(nums[i]);
+        }
+        return false;
+    }
+}
+
+--------------------------------------------------------------
 4. **Product of Array Except Self**
    - LeetCode #238
 
+Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+
+The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+
+You must write an algorithm that runs in O(n) time and without using the division operation.
+
+Example 1:
+
+Input: nums = [1,2,3,4]
+Output: [24,12,8,6]
+Example 2:
+
+Input: nums = [-1,1,0,-3,3]
+Output: [0,0,9,0,0]
+
+Approach:
+1. The code first creates two arrays `pre` and `suff` to store the prefix product and suffix product of the elements, respectively.
+2. The `pre` array stores the product of all elements to the left of the current element.
+3. The `suff` array stores the product of all elements to the right of the current element.
+4. After computing the prefix and suffix product arrays, the code then calculates the final answer by taking the product of the corresponding prefix and suffix values for each element.
+
+Time Complexity (TC):
+- The code traverses the input array three times: once for calculating the `pre` array, once for calculating the `suff` array, and once for calculating the final answer.
+- Each traversal takes linear time O(n), where n is the size of the input array.
+- Therefore, the overall time complexity is O(n).
+
+Space Complexity (SC):
+- The code uses three additional arrays: `pre`, `suff`, and `ans`, each of size n, where n is the size of the input array.
+- Therefore, the space complexity is O(n).
+
+Example:
+For the input array [1, 2, 3, 4], the code calculates the prefix and suffix arrays as follows:
+- `pre` = [1, 2, 6, 24] (product of elements to the left)
+- `suff` = [24, 24, 12, 4] (product of elements to the right)
+
+Then, it calculates the final answer `ans` as follows:
+- `ans` = [24, 12, 8, 6]
+
+Each element in the `ans` array is the product of all elements in the input array except for the element at that index.
+
+Code:
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        // [1,2,3,4]
+        // [9,8,7,6]
+        // pre - [1,3,6,10]
+        // suff - [10,9,7,4]
+
+        // [1,2,3,4]
+        // [24,12,8,6]
+
+        // [1,2,6,20]
+        // [24,24,12,4]
+        // [1,2,3,4]
+        // pre = [1, 1, 2, 6]
+        // suff = [24 ,12 ,4 ,1]
+        int n = nums.length;
+        int pre[] = new int[n];
+        int suff[] = new int[n];
+        pre[0] = nums[0];
+        suff[n - 1] = nums[n-1];
+        
+        for(int i = 1; i < n; i++) {
+            pre[i] = pre[i - 1] * nums[i];
+        }
+        for(int i = n - 2; i >= 0; i--) {
+            suff[i] = suff[i + 1] * nums[i];
+        }
+        
+        int ans[] = new int[n];
+        ans[0] = suff[1];
+        ans[n-1] = pre[n-2];
+        for(int i = 1; i < n-1; i++) {
+            ans[i] = pre[i-1] * suff[i+1];
+        }
+        return ans;
+    }
+}
+
+--------------------------------------------------------------
 5. **Maximum Subarray**
    - LeetCode #53
 
+Given an integer array nums, find the 
+subarray with the largest sum, and return its sum.
+
+Example 1:
+
+Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+Output: 6
+Explanation: The subarray [4,-1,2,1] has the largest sum 6.
+Example 2:
+
+Input: nums = [1]
+Output: 1
+Explanation: The subarray [1] has the largest sum 1.
+Example 3:
+
+Input: nums = [5,4,-1,7,8]
+Output: 23
+Explanation: The subarray [5,4,-1,7,8] has the largest sum 23.
+
+Kadane's Algorithm:
+- The algorithm iterates through the array from left to right, keeping track of the current sum (`currentSum`) and the maximum sum (`maxSum`) seen so far.
+- For each element, the algorithm updates the `currentSum` by considering whether to include the current element in the subarray or 
+start a new subarray from the current element.
+- If the `currentSum` becomes negative, it means that including the current element in the subarray will only decrease the sum. So, 
+the algorithm resets the `currentSum` to the current element to start a new potential subarray.
+- The algorithm updates the `maxSum` at each step to keep track of the maximum sum found so far.
+
+The time complexity of this approach is O(n) because it iterates through the array once. The space complexity is O(1) because it 
+only uses a constant amount of additional space.
+
+Divide and Conquer Approach:
+The divide and conquer approach to solve the maximum subarray problem is more complex and involves recursively dividing the array 
+into subproblems, finding maximum subarrays in the left and right halves, and then combining them to find the maximum subarray that 
+spans the mid-point of the array.
+
+The time complexity of the divide and conquer approach is also O(n), but it involves a more intricate implementation and is 
+generally less straightforward compared to Kadane's algorithm. While it's an interesting exercise to implement the divide and 
+conquer approach, the Kadane's algorithm should be preferred in practice due to its simplicity and efficiency.
+
+
+Code:
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int maxSum = Integer.MIN_VALUE; 
+        // Initialize the maximum sum with the first element of the array
+        int currentSum = Integer.MIN_VALUE; 
+        // Initialize the current sum with the first element of the array
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++) {
+            // Calculate the current sum considering the current element
+            // Choose either the current element itself or the sum of the current 
+            // element and the previous currentSum
+            // Update the currentSum to track the maximum sum seen so far
+
+            if (currentSum < 0) {
+                currentSum = nums[i];
+            } else {
+                currentSum = currentSum + nums[i];
+            }
+
+            // Update the maximum sum if the currentSum is greater
+            if (currentSum > maxSum) {
+                maxSum = currentSum;
+            }
+        }
+
+        return maxSum;
+    }
+}
+
+--------------------------------------------------------------
 6. **Move Zeroes**
    - LeetCode #283
 
-7. **3Sum**
-   - LeetCode #15
+Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
 
-8. **Merge Intervals**
-   - LeetCode #56
+Note that you must do this in-place without making a copy of the array.
 
-9. **Rotate Array**
-   - LeetCode #189
+Example 1:
 
+Input: nums = [0,1,0,3,12]
+Output: [1,3,12,0,0]
+Example 2:
+
+Input: nums = [0]
+Output: [0]
+
+Time Complexity (TC):
+The given code uses a single loop that iterates through the array once, and for each non-zero element encountered, it performs a 
+constant-time swap operation. Therefore, the time complexity of this code is O(n), where n is the size of the input array `nums`. 
+This is because the time taken by the loop is directly proportional to the number of elements in the array.
+
+Space Complexity (SC):
+The given code uses a constant amount of extra space. The space used does not depend on the size of the input array. The only 
+extra variables used are `i`, `j`, and `temp`, which are integers and do not depend on the size of the array. Hence, the space 
+complexity of this code is O(1), which is constant space.
+
+
+Code:
+public void moveZeroes(int[] nums) {
+    int i = 0;
+    int j = 0;
+    while (i < nums.length) {
+        if (nums[i] != 0) {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+            j++;
+        }
+        i++;
+    }
+}
+
+--------------------------------------------------------------
 10. **Group Anagrams**
     - LeetCode #49
 
+Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+Example 1:
+
+Input: strs = ["eat","tea","tan","ate","nat","bat"]
+Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+Example 2:
+
+Input: strs = [""]
+Output: [[""]]
+Example 3:
+
+Input: strs = ["a"]
+Output: [["a"]]
+
+
+Approach:
+
+1. Create a HashMap with a key of type String and value of type List of Strings. This will be used to group anagrams together.
+
+2. Iterate through each word in the input array `strs`.
+   - Create a character array for the word and sort it alphabetically.
+   - Convert the sorted character array back to a string. This will be the key for the HashMap.
+   - If the key does not exist in the HashMap, create a new entry with an empty list as the value.
+   - Add the original word to the list corresponding to the key in the HashMap.
+
+3. After processing all words, the HashMap will contain groups of anagrams together.
+
+4. Return the values of the HashMap as the final answer.
+TC & SC:
+The function `groupAnagrams` will group the anagrams together and return the result as a list of lists of strings. 
+The time complexity of this solution is O(N * K * log(K)), where N is the number of words in the input array, and K is the 
+maximum length of a word. The space complexity is O(N) to store the anagram groups in the HashMap.
+
+Code:
+
+```java
+import java.util.*;
+
+public class Solution {
+    public List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> anagramMap = new HashMap<>();
+
+        for (String word : strs) {
+            char[] chars = word.toCharArray();
+            Arrays.sort(chars);
+            String sortedKey = new String(chars);
+
+            anagramMap.putIfAbsent(sortedKey, new ArrayList<>());
+            anagramMap.get(sortedKey).add(word);
+        }
+
+        return new ArrayList<>(anagramMap.values());
+    }
+}
+```
+
+
+--------------------------------------------------------------
 11. **Valid Sudoku**
     - LeetCode #36
 
-12. **Container With Most Water**
-    - LeetCode #11
-
+--------------------------------------------------------------
 13. **Minimum Size Subarray Sum**
     - LeetCode #209
 
-14. **Search in Rotated Sorted Array**
-    - LeetCode #33
+Given an array of positive integers nums and a positive integer target, return the minimal length of a 
+subarray whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.
 
-15. **Find First and Last Position of Element in Sorted Array**
-    - LeetCode #34
+Example 1:
+Input: target = 7, nums = [2,3,1,2,4,3]
+Output: 2
+Explanation: The subarray [4,3] has the minimal length under the problem constraint.
 
+Example 2:
+Input: target = 4, nums = [1,4,4]
+Output: 1
+
+Example 3:
+Input: target = 11, nums = [1,1,1,1,1,1,1,1]
+Output: 0
+
+
+Approach:
+The approach used here is the sliding window technique. We use two pointers, `start` and `end`, to represent the current subarray. 
+We initialize both pointers to 0. We also maintain a `sum` variable to keep track of the sum of the current subarray and a `min` 
+variable to store the minimum length found so far.
+
+1. Initialize `start` and `end` to 0, `sum` to 0, and `min` to `Integer.MAX_VALUE`.
+
+2. Start iterating from the `end` pointer, and at each step, add the current element `nums[end]` to the `sum`.
+
+3. Check if the `sum` is greater than or equal to the `target`.
+   - If it is, update the `min` to be the minimum of `min` and the length of the current subarray `(end - start + 1)`.
+   - Move the `start` pointer to the right and subtract the element `nums[start]` from the `sum` until `sum` becomes less than `target`.
+
+4. Continue steps 2 and 3 until the `end` pointer reaches the end of the array.
+
+5. Finally, return the `min` value. If no subarray is found whose sum is greater than or equal to `target`, return 0.
+
+Time Complexity:
+The `start` and `end` pointers each move at most `n` steps (where `n` is the length of the `nums` array). So the time complexity is O(n).
+
+Space Complexity:
+The space complexity is O(1) because we are not using any extra data structures that grow with the input size.
+
+Overall, this algorithm efficiently finds the minimum length of a contiguous subarray with a sum greater than or equal to the given `target` value.
+
+Code:
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int start = 0, end = 0;
+        int sum = 0;
+        int min = Integer.MAX_VALUE;
+        
+        for(end = 0; end < nums.length; end++){
+            sum += nums[end];
+            while(sum >= target){
+                min = Math.min(min, (end-start+1));
+                sum -= nums[start++];
+            }
+        }
+        
+        return min == Integer.MAX_VALUE ? 0 : min;
+    }
+}
+
+--------------------------------------------------------------
 16. **Set Matrix Zeroes**
     - LeetCode #73
 
+Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
+You must do it in place.
+
+Example 1:
+Input: matrix = [[1,1,1],[1,0,1],[1,1,1]]
+Output: [[1,0,1],[0,0,0],[1,0,1]]
+
+Example 2:
+Input: matrix = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+Output: [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
+
+
+
+--------------------------------------------------------------
 17. **Jump Game**
     - LeetCode #55
 
+You are given an integer array nums. You are initially positioned at the array's first index, and each element in the array represents your maximum jump length at that position.
+
+Return true if you can reach the last index, or false otherwise.
+
+Example 1:
+Input: nums = [2,3,1,1,4]
+Output: true
+Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
+
+Example 2:
+Input: nums = [3,2,1,0,4]
+Output: false
+Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
+
+To solve this problem, we can use a greedy approach to determine if it's possible to reach the last index.
+
+**Approach:**
+
+1. Start from the first index of the array.
+
+2. Initialize a variable `maxReach` to store the maximum index that we can reach from the current position.
+
+3. Loop through the array from the first index up to the last index (excluding the last index), and update the `maxReach` at each step.
+
+4. At each step, check if the current index is greater than or equal to the `maxReach`. If it is, then we cannot progress further, and we return `false`.
+
+5. If the loop completes without encountering any situation where we cannot progress further, it means we can reach the last index, and we return `true`.
+
+**Time Complexity (TC):**
+The algorithm iterates through the array once, so the time complexity is O(n), where n is the length of the input array `nums`.
+
+**Space Complexity (SC):**
+The algorithm uses a constant amount of extra space for variables, so the space complexity is O(1), which is constant. No additional data structures are used that grow with the input size.
+
+**Java Code:**
+
+```java
+public boolean canJump(int[] nums) {
+    int n = nums.length;
+    int maxReach = 0;
+
+    for (int i = 0; i < n - 1; i++) {
+        maxReach = Math.max(maxReach, i + nums[i]);
+        if (maxReach <= i) {
+            return false;
+        }
+    }
+
+    return true;
+}
+```
+
+
+--------------------------------------------------------------
 18. **Majority Element**
     - LeetCode #169
 
+Given an array nums of size n, return the majority element.
+
+The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+Example 1:
+Input: nums = [3,2,3]
+Output: 3
+
+Example 2:
+Input: nums = [2,2,1,1,1,2,2]
+Output: 2
+
+**Approach:**
+
+1. Initialize two variables: `majorityEle` and `count`. Set `majorityEle` to the first element of the array `nums[0]`, and `count` to 1.
+This is because the first element is a potential candidate for the majority element, and we've seen it once.
+
+2. Loop through the array starting from the second element (index `1`) up to the last element.
+
+3. For each element `nums[i]` in the array, compare it with the `majorityEle`. If they are equal, increment the `count` by 1, 
+indicating that we've seen another occurrence of a potential majority element.
+
+4. If the current element `nums[i]` is not equal to the `majorityEle`, decrement the `count` by 1. This indicates that we're 
+canceling out one occurrence of the current element as well as one occurrence of the potential majority element. If the `count` 
+becomes 0, it means we've canceled out all occurrences of the previous majority element and its counterpart elements.
+
+5. In this case, update the `majorityEle` to the current element `nums[i]`, and reset the `count` to 1. This new element becomes 
+the new potential candidate for the majority element.
+
+6. Repeat steps 3 to 5 for all elements in the array.
+
+7. After looping through the entire array, the `majorityEle` will contain the element that is the majority element.
+
+8. Return `majorityEle` as the result.
+
+**Time Complexity (TC):**
+The algorithm iterates through the entire array once, so the time complexity is O(n), where n is the length of the input array `nums`.
+
+**Space Complexity (SC):**
+The algorithm uses a constant amount of extra space for the `majorityEle` and `count` variables, so the space complexity is O(1), 
+which is constant. No additional data structures are used that grow with the input size.
+
+Code:
+class Solution {
+    public int majorityElement(int[] nums) {
+        int majorityEle = nums[0];
+        int count = 1;
+
+        for (int i = 1; i < nums.length; i++) {
+            if (majorityEle == nums[i]) {
+                count++;
+            } else {
+                count--;
+                if (count == 0) {
+                    majorityEle = nums[i];
+                    count = 1;
+                }
+            }
+        }
+
+        return majorityEle;
+    }
+}
+
+--------------------------------------------------------------
 19. **Missing Number**
     - LeetCode #268
 
-20. **Valid Parentheses**
-    - LeetCode #20
+Given an array nums containing n distinct numbers in the range [0, n], return the only number in the range that is missing from the array.
+
+Example 1:
+
+Input: nums = [3,0,1]
+Output: 2
+Explanation: n = 3 since there are 3 numbers, so all numbers are in the range [0,3]. 2 is the missing number in the range since it does not appear in nums.
+Example 2:
+
+Input: nums = [0,1]
+Output: 2
+Explanation: n = 2 since there are 2 numbers, so all numbers are in the range [0,2]. 2 is the missing number in the range since it does not appear in nums.
+Example 3:
+
+Input: nums = [9,6,4,2,3,5,7,0,1]
+Output: 8
+Explanation: n = 9 since there are 9 numbers, so all numbers are in the range [0,9]. 8 is the missing number in the range since it does not appear in nums.
+
+**Approach:**
+
+The algorithm uses the XOR operation to find the missing number. The key property of XOR is that it returns 1 for different bits 
+and 0 for identical bits.
+
+1. Initialize a variable `x` to 0.
+
+2. Iterate through the given `nums` array and perform XOR operation with each element `l`. This operation will effectively cancel out 
+the numbers that appear twice in the array, leaving us with the XOR result of the missing number and 0.
+
+3. Now, iterate from 0 to `nums.length` (both inclusive) and perform XOR operation with each `i`. This operation will cancel out all 
+the numbers from 0 to n, leaving us with the XOR result of the missing number.
+
+4. Return the value of `x` as the result, which is the missing number.
+
+**Example:**
+
+Let's take an example for better understanding. Consider the array `nums = [3, 0, 1]`.
+
+1. Initialize `x = 0`.
+2. XOR of `x` with each element of the array: `x ^= 3 ^ 0 ^ 1 = 2`.
+3. XOR of `x` with each number from 0 to 3: `x ^= 2 ^ 0 ^ 1 ^ 2 ^ 3 = 0`.
+
+The result is 0, which is the missing number.
+
+**Time Complexity (TC):**
+The algorithm iterates through the `nums` array and also through the numbers from 0 to n, where n is the length of the array. So 
+the time complexity is O(n).
+
+**Space Complexity (SC):**
+The algorithm uses a constant amount of extra space for the variable `x`, so the space complexity is O(1), which is constant. 
+No additional data structures are used that grow with the input size.
+
+Code:
+class Solution {
+    public int missingNumber(int[] nums) {
+        int x = 0;
+        for(int l : nums){
+            x ^= l;
+        }
+        for(int i = 0; i <= nums.length; i++){
+            x ^= i;
+        }
+        return x;
+    }
+}
 
 --------------------------------------------------------------
 --------------------------------------------------------------
@@ -5360,13 +5937,75 @@ public int[] twoSum(int[] nums, int target) {
 2. **Valid Anagram**
    - LeetCode #242
 
-3. **Two Sum III - Data Structure Design**
-   - LeetCode #170
-
 4. **Contains Duplicate**
    - LeetCode #217
 
+--------------------------------------------------
+
 5. **Longest Substring Without Repeating Characters**
+
+Given a string s, find the length of the longest 
+substring without repeating characters.
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+Example 3:
+
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+
+Approach:
+- The function uses a sliding window approach with two pointers `i` and `j` to form the substring.
+- The `i` pointer moves forward and expands the window to the right as long as there are no repeating characters in the window.
+- The `j` pointer moves forward to shrink the window from the left when a repeating character is encountered.
+- The `max` variable keeps track of the maximum length of the non-repeating substring encountered so far.
+- A `HashSet` named `set` is used to store the characters of the current window to check for repetitions.
+
+Time Complexity (TC):
+- The function uses two pointers that move through the string from left to right without backtracking.
+- So, each character is visited at most twice (once by each pointer), making the time complexity linear with respect to the length of 
+the string.
+- Therefore, the time complexity is O(n), where n is the length of the input string `s`.
+
+Space Complexity (SC):
+- The function uses a `HashSet` to store characters in the current window.
+- In the worst case, the `HashSet` can contain all unique characters of the entire string, which would be O(n) space.
+- Therefore, the space complexity is O(n), where n is the length of the input string `s`.
+
+Code:
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        HashSet<Character> set = new HashSet<>();
+        int i=0, j=0, max=0;
+        while(i<s.length())
+        {
+            if(!set.contains(s.charAt(i)))
+            {
+               set.add(s.charAt(i));
+               max= Math.max(max, set.size());
+               i++;
+            }
+            else
+            {
+               set.remove(s.charAt(j));
+               j++;
+            }
+        }
+        return max;
+    }
+}
+
+------------------------------------------------------------
    - LeetCode #3
 
 6. **Most Common Word**
@@ -5399,9 +6038,75 @@ public int[] twoSum(int[] nums, int target) {
 15. **Isomorphic Strings**
     - LeetCode #205
 
+---------------------------------------------------
 16. **Top K Frequent Elements**
     - LeetCode #347
 
+Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+Note : frequent element is the element with maximum frequency
+Example 1:
+
+Input: nums = [1,1,1,2,2,3], k = 2
+Output: [1,2]
+Example 2:
+
+Input: nums = [1], k = 1
+Output: [1]
+
+Approach:
+1. First, it counts the frequency of each number in the array `nums` using a `frequencyMap`, which is a HashMap. The keys of this map are the numbers in the array, and the values are their corresponding frequencies.
+2. Next, it creates a min-heap (PriorityQueue with a custom comparator) to store the k most frequent elements. The min-heap will keep the elements with the smallest frequencies at the top. We iterate through the `frequencyMap` and insert each frequency entry (key-value pair) into the min-heap.
+3. While inserting elements into the min-heap, if the size of the heap becomes greater than k, we remove the smallest element (i.e., the element with the smallest frequency) from the heap to maintain the k most frequent elements at any time.
+4. Finally, we extract the k most frequent elements from the min-heap and store them in the `result` array.
+
+Time Complexity (TC):
+1. Counting the frequency of each element in the array takes O(n) time, where n is the number of elements in the array.
+2. Inserting each element into the min-heap takes O(log k) time, as the min-heap can have at most k elements.
+3. We do this for all the n elements in the array, so the total time complexity is O(n log k).
+
+Space Complexity (SC):
+1. The space used by the `frequencyMap` is O(n), as it stores frequency entries for each element in the array.
+2. The space used by the min-heap is O(k), as it can store at most k elements.
+3. The space used by the `result` array is O(k) to store the k most frequent elements.
+4. Therefore, the overall space complexity is O(n + k).
+
+In conclusion, the given approach efficiently finds the k most frequent elements from the input array `nums` using a min-heap and has a time complexity of O(n log k) and a space complexity of O(n + k).
+
+Code:
+lass Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        // Count the frequency of each number
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int num : nums) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+
+        // Create a min-heap to store the k most frequent elements
+        PriorityQueue<Map.Entry<Integer, Integer>> minHeap = new PriorityQueue<>(
+            (a, b) -> Integer.compare(a.getValue(), b.getValue())
+        );
+
+        // Insert elements into the min-heap
+        for (Map.Entry<Integer, Integer> entry : frequencyMap.entrySet()) {
+            minHeap.offer(entry);
+            if (minHeap.size() > k) {
+                minHeap.poll();
+            }
+        }
+
+        // Extract the k most frequent elements from the min-heap
+        int[] result = new int[k];
+        int index = 0;
+        while (!minHeap.isEmpty()) {
+            result[index++] = minHeap.poll().getKey();
+        }
+
+        return result;
+    }
+
+}
+
+---------------------------------------------------
 17. **Sort Characters By Frequency**
     - LeetCode #451
 
