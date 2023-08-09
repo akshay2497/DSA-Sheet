@@ -1597,12 +1597,15 @@ number of characters is limited (128 ASCII characters). Therefore, the overall t
 -----------------------------------------------------
 4. Fruit Into Baskets (medium) - LeetCode #904
 
-You are visiting a farm that has a single row of fruit trees arranged from left to right. The trees are represented by an integer array fruits where fruits[i] is the type of fruit the ith tree produces.
+You are visiting a farm that has a single row of fruit trees arranged from left to right. The trees are represented by an integer 
+array fruits where fruits[i] is the type of fruit the ith tree produces.
 
 You want to collect as much fruit as possible. However, the owner has some strict rules that you must follow:
 
-You only have two baskets, and each basket can only hold a single type of fruit. There is no limit on the amount of fruit each basket can hold.
-Starting from any tree of your choice, you must pick exactly one fruit from every tree (including the start tree) while moving to the right. The picked fruits must fit in one of your baskets.
+You only have two baskets, and each basket can only hold a single type of fruit. There is no limit on the amount of fruit each basket 
+can hold.
+Starting from any tree of your choice, you must pick exactly one fruit from every tree (including the start tree) while moving to 
+the right. The picked fruits must fit in one of your baskets.
 Once you reach a tree with fruit that cannot fit in your baskets, you must stop.
 Given the integer array fruits, return the maximum number of fruits you can pick.
 
@@ -1742,11 +1745,10 @@ The overall solution is much more efficient than the brute force approach and is
 -------------------------------------------------------
 5. Longest Repeating Character Replacement (medium) - LeetCode #424
 
-You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times.
+You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase 
+English character. You can perform this operation at most k times.
 
 Return the length of the longest substring containing the same letter you can get after performing the above operations.
-
- 
 
 Example 1:
 
@@ -1894,9 +1896,23 @@ class Solution {
 -------------------------------------------------------
 6. Permutation in String (medium) - LeetCode #567
 
+Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
+
+In other words, return true if one of s1's permutations is the substring of s2.
+
+Example 1:
+Input: s1 = "ab", s2 = "eidbaooo"
+Output: true
+Explanation: s2 contains one permutation of s1 ("ba").
+
+Example 2:
+Input: s1 = "ab", s2 = "eidboaoo"
+Output: false
 
 Brute force
-In the brute force approach, we generate all possible permutations of the first string s1 and check if any of those permutations is a substring of the second string s2. We can use backtracking to generate all permutations of s1 and then check if each permutation is a substring of s2.
+In the brute force approach, we generate all possible permutations of the first string s1 and check if any of those permutations is 
+a substring of the second string s2. We can use backtracking to generate all permutations of s1 and then check if each permutation 
+is a substring of s2.
 
 Here's the basic outline of the brute force approach:
 
@@ -2098,9 +2114,8 @@ public int lengthOfLongestSubstring(String s) {
 
 Given two strings s and p, return an array of all the start indices of p's anagrams in s. You may return the answer in any order.
 
-An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
-
- 
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original 
+letters exactly once.
 
 Example 1:
 
@@ -2200,7 +2215,8 @@ Initialize an empty list called anagramIndices to store the start indices of the
 
 Calculate the lengths of the strings s and p and store them in variables n and m, respectively.
 
-Create two integer arrays charFrequencyS and charFrequencyP of size 26 (to represent each lowercase English alphabet) to keep track of character frequencies in s and p, respectively.
+Create two integer arrays charFrequencyS and charFrequencyP of size 26 (to represent each lowercase English alphabet) to keep track 
+of character frequencies in s and p, respectively.
 
 Populate charFrequencyP with the character frequencies of string p.
 
@@ -2378,17 +2394,21 @@ Explanation: We can replace the first "QQ" to "ER".
 
 
 Approach :
-Calculate the expected count count of each character in a balanced string. Since there are four kinds of characters ('Q', 'W', 'E', and 'R'), the expected count for each character is n / 4, where n is the length of the string s.
+Calculate the expected count of each character in a balanced string. Since there are four kinds of characters 
+('Q', 'W', 'E', and 'R'), the expected count for each character is n / 4, where n is the length of the string s.
 
-Create a HashMap charFrequency to store the character frequencies in the string. Loop through each character in the string s and populate the HashMap, incrementing the count for each character.
+Create a HashMap charFrequency to store the character frequencies in the string. Loop through each character in the string s and 
+populate the HashMap, incrementing the count for each character.
 
 Initialize two pointers, left and right, to represent the window. These pointers will help us track the substring that needs to be replaced.
 
-Start traversing the string from left to right using the right pointer. For each character at the right pointer, decrement its count in the charFrequency HashMap.
+Start traversing the string from left to right using the right pointer. For each character at the right pointer, decrement its count 
+in the charFrequency HashMap.
 
 Move the right pointer to the right to expand the window.
 
-Enter a loop to shrink the window from the left side. This loop runs as long as the window is balanced (i.e., the character frequencies are within the expected counts).
+Enter a loop to shrink the window from the left side. This loop runs as long as the window is balanced (i.e., the character 
+frequencies are within the expected counts).
 
 Inside the loop, calculate the length of the current window (right - left) and update minLength with the minimum of its current value and the length of the current window.
 
@@ -2413,7 +2433,6 @@ class Solution {
         for (char ch : s.toCharArray()) {
             charFrequency.put(ch, charFrequency.getOrDefault(ch, 0) + 1);
         }
-        
         // Initialize pointers to represent the window
         int left = 0;
         int right = 0;
@@ -2453,10 +2472,8 @@ TC = O(N) and SC = O(1)
 -------------------------------------------------------
 14. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit (medium) - LeetCode #1438
 
-
-Given an array of integers nums and an integer limit, return the size of the longest non-empty subarray such that the absolute difference between any two elements of this subarray is less than or equal to limit.
-
- 
+Given an array of integers nums and an integer limit, return the size of the longest non-empty subarray such that the absolute 
+difference between any two elements of this subarray is less than or equal to limit.
 
 Example 1:
 
@@ -2487,9 +2504,10 @@ Output: 3
 
 Explanation:
 
-We use a TreeMap freqMap to keep track of the frequencies of elements in the current window. The TreeMap is sorted based on the elements' natural order, allowing us to efficiently access the minimum and maximum elements within the window.
+We use a TreeMap freqMap to keep track of the frequencies of elements in the current window. The TreeMap is sorted based on the 
+elements' natural order, allowing us to efficiently access the minimum and maximum elements within the window.
 
-The left and right pointers are used to represent the window boundaries, just like in the previous solutions.
+The left and right pointers are used to represent the window boundaries.
 
 We traverse the array from left to right using the right pointer and perform the following steps:
 
@@ -2506,7 +2524,10 @@ After adjusting the window, we update the maxWindowSize with the maximum of its 
 After the loop, we return the maxWindowSize as the result.
 
 Time Complexity:
-The time complexity of this approach is O(n * log(n)), where n is the size of the input array nums. Both the left and right pointers traverse the array exactly once. For each right pointer, we perform insertion and deletion operations on the TreeMap, which take O(log(n)) time. In the worst case, the TreeMap can have n distinct elements, resulting in an overall time complexity of O(n * log(n)).
+The time complexity of this approach is O(n * log(n)), where n is the size of the input array nums. Both the left and right 
+pointers traverse the array exactly once. For each right pointer, we perform insertion and deletion operations on the TreeMap, 
+which take O(log(n)) time. In the worst case, the TreeMap can have n distinct elements, resulting in an overall time complexity of 
+O(n * log(n)).
 
 Space Complexity:
 The space complexity is O(n), where n is the size of the input array nums. In the worst case, the TreeMap can have n distinct elements.
@@ -2710,9 +2731,6 @@ public int findKthLargest(int[] nums, int k) {
 }
 ```
 
-
-1. **Kth Largest Element in an Array**
-   - LeetCode #215
 
 2. **Merge k Sorted Lists**
    - LeetCode #23
@@ -3125,9 +3143,9 @@ public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
             p = p.next;
         if(q != null)
             q = q.next;
-        if(carry > 0)
-            curr.next = new ListNode(carry);
     }
+    if(carry > 0)
+        curr.next = new ListNode(carry);
     return dummy.next; 
 }
 --------------------------------------------------------------
@@ -3187,7 +3205,7 @@ public boolean isPalindrome(ListNode head) {
     }
     
     ListNode slow = head, fast = head, prev = null;
-    
+    // [1,2,3,2,1]
     while (fast != null && fast.next != null) {
         fast = fast.next.next;
         prev = slow;
@@ -3613,6 +3631,9 @@ public ListNode rotateRight(ListNode head, int k) {
         lastNode = lastNode.next;
         i++;
     }
+
+    // Input: head = [1,2,3,4,5], k = 2
+    // Output: [4,5,1,2,3]
 
     ListNode newHead = lastNode.next; 
     // Creating a new head pointing to the (numNodes - k)th node
@@ -4045,9 +4066,7 @@ public TreeNode sortedListToBST(ListNode head) {
     }
     
     // Step 2: Divide the linked list into two halves
-    if (prev != null) {
-        prev.next = null;
-    }
+    prev.next = null;
     
     // Step 3: Recursively build left and right subtrees
     TreeNode root = new TreeNode(slow.val);
@@ -5361,18 +5380,18 @@ conquer approach, the Kadane's algorithm should be preferred in practice due to 
 Code:
 class Solution {
     public int maxSubArray(int[] nums) {
-        int maxSum = Integer.MIN_VALUE; 
+        int maxSum = nums[0]; 
         // Initialize the maximum sum with the first element of the array
-        int currentSum = Integer.MIN_VALUE; 
+        int currentSum = nums[0]; 
         // Initialize the current sum with the first element of the array
         int n = nums.length;
 
-        for (int i = 0; i < n; i++) {
+        for (int i = 1; i < n; i++) {
             // Calculate the current sum considering the current element
             // Choose either the current element itself or the sum of the current 
             // element and the previous currentSum
             // Update the currentSum to track the maximum sum seen so far
-
+            
             if (currentSum < 0) {
                 currentSum = nums[i];
             } else {
@@ -5380,9 +5399,7 @@ class Solution {
             }
 
             // Update the maximum sum if the currentSum is greater
-            if (currentSum > maxSum) {
-                maxSum = currentSum;
-            }
+            maxSum = Math.max(maxSum, currentSum);
         }
 
         return maxSum;
