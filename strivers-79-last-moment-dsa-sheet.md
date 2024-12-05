@@ -1,6 +1,6 @@
 # Arrays :
 
-1. https://leetcode.com/problems/next-permutation/description/
+1. https://leetcode.com/problems/next-permutation/description/  
 My Solution : https://leetcode.com/problems/next-permutation/solutions/1909745/java-easy-two-pointers-algorithm-with-linear-time-and-constant-space/
 Series pb no - arrays and hashing - 1
 
@@ -138,6 +138,10 @@ public class Solution {
 	}
 }
 ```
+
+10. https://leetcode.com/problems/maximum-product-subarray/description/
+My Solution : https://leetcode.com/problems/maximum-product-subarray/solutions/6114712/java-observation-based-solution-using-prefix-and-suffix-product-o-n-solution/
+Series pb no - arrays and hashing - 8
 
 
 
