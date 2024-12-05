@@ -1,31 +1,31 @@
 # Arrays :
 
 1. https://leetcode.com/problems/next-permutation/description/  
-My Solution : https://leetcode.com/problems/next-permutation/solutions/1909745/java-easy-two-pointers-algorithm-with-linear-time-and-constant-space/
+My Solution : https://leetcode.com/problems/next-permutation/solutions/1909745/java-easy-two-pointers-algorithm-with-linear-time-and-constant-space/  
 Series pb no - arrays and hashing - 1
 
-2. https://leetcode.com/problems/3sum/description/
-My solution : https://leetcode.com/problems/3sum/solutions/6109193/java-easy-solution-with-2-pointers/
+2. https://leetcode.com/problems/3sum/description/  
+My solution : https://leetcode.com/problems/3sum/solutions/6109193/java-easy-solution-with-2-pointers/  
 Series pb no - arrays and hashing - 2
 
-4. https://leetcode.com/problems/maximum-subarray/description/
-My solution : https://leetcode.com/problems/maximum-subarray/solutions/6108684/kadane-s-algorithm-o-n-approach/
+4. https://leetcode.com/problems/maximum-subarray/description/  
+My solution : https://leetcode.com/problems/maximum-subarray/solutions/6108684/kadane-s-algorithm-o-n-approach/  
 Series pb no - arrays and hashing - 3
 
-6. https://leetcode.com/problems/majority-element/description/
-My solution : https://leetcode.com/problems/majority-element/solutions/6109025/java-brute-force-better-and-optimized-approach-with-time-and-space-complexity/
+6. https://leetcode.com/problems/majority-element/description/  
+My solution : https://leetcode.com/problems/majority-element/solutions/6109025/java-brute-force-better-and-optimized-approach-with-time-and-space-complexity/  
 Series pb no - Not in the series but prerequisite to next problem
 
-7. https://leetcode.com/problems/majority-element-ii/description/
-My Solutionn : https://leetcode.com/problems/majority-element-ii/solutions/6109162/morres-voting-algorithm-approch-with-edge-case-handling-part/
+7. https://leetcode.com/problems/majority-element-ii/description/  
+My Solutionn : https://leetcode.com/problems/majority-element-ii/solutions/6109162/morres-voting-algorithm-approch-with-edge-case-handling-part/  
 Series pb no - arrays and hashing - 4
 
-8. https://leetcode.com/problems/set-mismatch/description/
-My Solutionn : https://leetcode.com/problems/set-mismatch/solutions/6112883/java-hashmap-based-solution-with-linear-time-and-space/
+8. https://leetcode.com/problems/set-mismatch/description/  
+My Solutionn : https://leetcode.com/problems/set-mismatch/solutions/6112883/java-hashmap-based-solution-with-linear-time-and-space/  
 Series pb no - arrays and hashing - 6
 
-9. https://www.geeksforgeeks.org/problems/inversion-of-array-1587115620/1
-Series pb no - arrays and hashing - 7
+9. https://www.geeksforgeeks.org/problems/inversion-of-array-1587115620/1  
+Series pb no - arrays and hashing - 7  
 
 My Solution :
 ```java
@@ -86,9 +86,9 @@ class Solution {
 }
 ```
 
-Prerequisite merge sort
-Merge sort question: https://www.naukri.com/code360/problems/merge-sort_920442
-Merge sort algorithm :
+Prerequisite merge sort  
+Merge sort question: https://www.naukri.com/code360/problems/merge-sort_920442  
+Merge sort algorithm :  
 
 ```java
 public class Solution {
@@ -139,9 +139,9 @@ public class Solution {
 }
 ```
 
-10. https://leetcode.com/problems/maximum-product-subarray/description/
-My Solution : https://leetcode.com/problems/maximum-product-subarray/solutions/6114712/java-observation-based-solution-using-prefix-and-suffix-product-o-n-solution/
-Series pb no - arrays and hashing - 8
+10. https://leetcode.com/problems/maximum-product-subarray/description/  
+My Solution : https://leetcode.com/problems/maximum-product-subarray/solutions/6114712/java-observation-based-solution-using-prefix-and-suffix-product-o-n-solution/  
+Series pb no - arrays and hashing - 8  
 
 
 
