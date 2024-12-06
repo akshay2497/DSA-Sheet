@@ -179,6 +179,10 @@ Series pb no - Binary Search - 2
 My Solution : [Soln](https://leetcode.com/problems/find-peak-element/solutions/6119743/java-easy-solution-with-visual-representation-o-logn/)  
 Series pb no - Binary Search - 3 
 
+15. [Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/description/)
+My Solution : [Soln](https://leetcode.com/problems/koko-eating-bananas/solutions/6120320/java-solution-with-explanation/)  
+Series pb no - Binary Search - 4   
+
 
 
 
