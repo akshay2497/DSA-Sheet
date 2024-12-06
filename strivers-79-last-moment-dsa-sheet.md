@@ -169,7 +169,11 @@ Prerequisite to striver next problem
 
 12. [Search in Rotated Sorted Array - 2](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/description/)  
 My Solution : [Soln](https://leetcode.com/problems/search-in-rotated-sorted-array-ii/solutions/6116606/java-easy-solution-using-binary-search/)  
-Series pb no - Binary Search - 1 
+Series pb no - Binary Search - 1
+
+13. [Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)
+My Solution : [Soln](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/solutions/6118025/java-easy-solution-with-explanation-o-logn/)
+Series pb no - Binary Search - 2
 
 
 
