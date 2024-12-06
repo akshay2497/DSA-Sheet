@@ -14,7 +14,7 @@ Series pb no - arrays and hashing - 3
 
 6. [Majority Element 1](https://leetcode.com/problems/majority-element/description/)  
 My solution : [Soln](https://leetcode.com/problems/majority-element/solutions/6109025/java-brute-force-better-and-optimized-approach-with-time-and-space-complexity/)  
-Series pb no - Not in the series but prerequisite to next problem
+Series pb no - Not in the series but a prerequisite to the next problem
 
 7. [Majority Element 2](https://leetcode.com/problems/majority-element-ii/description/)  
 My Solution : [Soln](https://leetcode.com/problems/majority-element-ii/solutions/6109162/morres-voting-algorithm-approch-with-edge-case-handling-part/)  
@@ -175,11 +175,11 @@ Series pb no - Binary Search - 1
 My Solution : [Soln](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/solutions/6118025/java-easy-solution-with-explanation-o-logn/)  
 Series pb no - Binary Search - 2  
 
-14. [Find Peak Element](https://leetcode.com/problems/find-peak-element/description/)
+14. [Find Peak Element](https://leetcode.com/problems/find-peak-element/description/)  
 My Solution : [Soln](https://leetcode.com/problems/find-peak-element/solutions/6119743/java-easy-solution-with-visual-representation-o-logn/)  
 Series pb no - Binary Search - 3 
 
-15. [Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/description/)
+15. [Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/description/)  
 My Solution : [Soln](https://leetcode.com/problems/koko-eating-bananas/solutions/6120320/java-solution-with-explanation/)  
 Series pb no - Binary Search - 4   
 
