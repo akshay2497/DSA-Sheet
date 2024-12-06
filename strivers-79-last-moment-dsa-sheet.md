@@ -173,8 +173,11 @@ Series pb no - Binary Search - 1
 
 13. [Find Minimum in Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/)  
 My Solution : [Soln](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/solutions/6118025/java-easy-solution-with-explanation-o-logn/)  
-Series pb no - Binary Search - 2
+Series pb no - Binary Search - 2  
 
+14. [Find Peak Element](https://leetcode.com/problems/find-peak-element/description/)
+My Solution : [Soln](https://leetcode.com/problems/find-peak-element/solutions/6119743/java-easy-solution-with-visual-representation-o-logn/)  
+Series pb no - Binary Search - 3 
 
 
 
