@@ -183,13 +183,17 @@ Series pb no - Binary Search - 3
 My Solution : [Soln](https://leetcode.com/problems/koko-eating-bananas/solutions/6120320/java-solution-with-explanation/)  
 Series pb no - Binary Search - 4 
 
-15. [Aggresive Cows](https://www.naukri.com/code360/problems/aggressive-cows_1082559)  
+16. [Aggresive Cows](https://www.naukri.com/code360/problems/aggressive-cows_1082559)  
 My Solution : [Soln](https://www.naukri.com/code360/problems/aggressive-cows_1082559?leftPanelTabValue=SUBMISSION)  
 Series pb no - Binary Search - 5 
 
-15. [Allocate Books](https://www.naukri.com/code360/problems/allocate-books_1090540)  
+17. [Allocate Books](https://www.naukri.com/code360/problems/allocate-books_1090540)  
 My Solution : [Soln](https://www.naukri.com/code360/problems/allocate-books_1090540?&leftPanelTabValue=SUBMISSION)  
 Series pb no - Binary Search - 6     
+
+18. [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/description/)  
+My Solution : [Soln](https://leetcode.com/problems/median-of-two-sorted-arrays/solutions/6129871/java-easy-solution-using-merge-approch-with-constant-space-and-linear-time/)  
+Series pb no - Binary Search - 7   
 
 
 
