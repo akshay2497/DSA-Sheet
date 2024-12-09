@@ -181,7 +181,15 @@ Series pb no - Binary Search - 3
 
 15. [Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/description/)  
 My Solution : [Soln](https://leetcode.com/problems/koko-eating-bananas/solutions/6120320/java-solution-with-explanation/)  
-Series pb no - Binary Search - 4   
+Series pb no - Binary Search - 4 
+
+15. [Aggresive Cows](https://www.naukri.com/code360/problems/aggressive-cows_1082559)  
+My Solution : [Soln](https://www.naukri.com/code360/problems/aggressive-cows_1082559?leftPanelTabValue=SUBMISSION)  
+Series pb no - Binary Search - 5 
+
+15. [Allocate Books](https://www.naukri.com/code360/problems/allocate-books_1090540)  
+My Solution : [Soln](https://www.naukri.com/code360/problems/allocate-books_1090540?&leftPanelTabValue=SUBMISSION)  
+Series pb no - Binary Search - 6     
 
 
 
