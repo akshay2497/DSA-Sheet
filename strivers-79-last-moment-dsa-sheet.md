@@ -193,7 +193,18 @@ Series pb no - Binary Search - 6
 
 18. [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/description/)  
 My Solution : [Soln](https://leetcode.com/problems/median-of-two-sorted-arrays/solutions/6129871/java-easy-solution-using-merge-approch-with-constant-space-and-linear-time/)  
-Series pb no - Binary Search - 7   
+Series pb no - Binary Search - 7
+
+# Linked List
+
+19. [Middle of the Linked List](https://leetcode.com/problems/middle-of-the-linked-list)  
+My Solution : [Soln](https://leetcode.com/problems/middle-of-the-linked-list/solutions/6132324/java-easy-solution-using-2-pointers-tc-o-n-2/)  
+Series pb no - Linked List - 1
+
+19. [Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)  
+My Solution : [Soln](https://leetcode.com/problems/linked-list-cycle/solutions/6132382/java-solution-with-explanation/)    
+Series pb no - Linked List - 2  
+
 
 
 
