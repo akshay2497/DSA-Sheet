@@ -207,7 +207,20 @@ Series pb no - Linked List - 2
 
 20. [Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list)  
 My Solution : [Soln](https://leetcode.com/problems/remove-nth-node-from-end-of-list/solutions/6132580/java-brute-force-and-optimized-solution/)    
-Series pb no - Linked List - 3   
+Series pb no - Linked List - 3  
+
+21. [Intersection of Two Linked Lists](https://leetcode.com/problems/intersection-of-two-linked-lists/description/)  
+My Solution : [Soln](https://leetcode.com/problems/intersection-of-two-linked-lists/solutions/6132956/java-easy-solution/)    
+Series pb no - Linked List - 4
+
+22. [Sort Lists](https://leetcode.com/problems/sort-list/description/)  
+My Solution : [Soln](https://leetcode.com/problems/sort-list/solutions/6133093/merge-sort-solution/)    
+Series pb no - Linked List - 5
+
+23. [Odd Even Linked Lists](https://leetcode.com/problems/odd-even-linked-list/description/)   
+My Solution : [Soln](https://leetcode.com/problems/odd-even-linked-list/solutions/6133162/java-easy-solution-using-2-pointers/)    
+Series pb no - Linked List - 6
+
 
 
 
