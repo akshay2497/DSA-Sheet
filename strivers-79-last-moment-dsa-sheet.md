@@ -205,7 +205,9 @@ Series pb no - Linked List - 1
 My Solution : [Soln](https://leetcode.com/problems/linked-list-cycle/solutions/6132382/java-solution-with-explanation/)    
 Series pb no - Linked List - 2  
 
-
+20. [Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list)  
+My Solution : [Soln](https://leetcode.com/problems/remove-nth-node-from-end-of-list/solutions/6132580/java-brute-force-and-optimized-solution/)    
+Series pb no - Linked List - 3   
 
 
 
