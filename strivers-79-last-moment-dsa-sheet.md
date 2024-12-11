@@ -227,4 +227,7 @@ Series pb no - Linked List - 6
 My Solution : [Soln](https://leetcode.com/problems/subsets/solutions/6136047/java-recursive-solution/)    
 Series pb no - Recursion and Backtracking - 1
 
+25. [Combination Sum](https://leetcode.com/problems/combination-sum/description/)    
+My Solution : [Soln](https://leetcode.com/problems/combination-sum/solutions/6136438/java-recursive-solution-with-comments/)     
+Series pb no - Recursion and Backtracking - 2  
 
