@@ -221,6 +221,10 @@ Series pb no - Linked List - 5
 My Solution : [Soln](https://leetcode.com/problems/odd-even-linked-list/solutions/6133162/java-easy-solution-using-2-pointers/)    
 Series pb no - Linked List - 6
 
+# Recursion and Backtracking
 
+24. [Subsets (Subsequences)](https://leetcode.com/problems/subsets/description/)    
+My Solution : [Soln](https://leetcode.com/problems/subsets/solutions/6136047/java-recursive-solution/)    
+Series pb no - Recursion and Backtracking - 1
 
 
